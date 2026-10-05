@@ -1,7 +1,14 @@
-﻿__pycache__/
+__pycache__/
 *.pyc
 .env
 .venv/
+venv/
 env/
 .vscode/
 .idea/
+
+# Security
+.env
+
+# Large extracted txt files (2.7 GB)
+data/raw/ffiec_extracted/

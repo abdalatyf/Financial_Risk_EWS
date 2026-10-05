@@ -1,0 +1,21 @@
+bank_id,bank_name,tier,tier_label,idrssd,ticker,market_file,market_source,price_basis,last_trading_date,notes
+SVB,Silicon Valley Bank,1,Crisis Casualty,802866,SIVB,SIVB_daily.csv,kaggle,raw,2023-03-09,Trading halted 2023-03-10; FDIC receivership 2023-03-10
+SBNY,Signature Bank,1,Crisis Casualty,2942690,SBNY,SBNY_daily.csv,investing,raw,2023-03-10,FDIC receivership 2023-03-12
+FRC,First Republic Bank,1,Crisis Casualty,4114567,FRCB,FRCB_daily.csv,yahoo,adjusted,2023-04-28,FDIC receivership 2023-05-01; Yahoo keeps the history under the OTC ticker FRCB
+SI,Silvergate Bank,1,Crisis Casualty,1216826,SI,SI_daily.csv,investing,raw,,Voluntary liquidation announced 2023-03-08; listed from 2019-11-08
+WAL,Western Alliance Bank,2,High-Stress Survivor,3138146,WAL,WAL_daily.csv,yahoo,adjusted,,
+PACW,Pacific Western Bank,2,High-Stress Survivor,494261,PACW,PACW_daily.csv,investing,raw,2023-11-30,Merged into Banc of California Nov-2023
+CMA,Comerica Bank,2,High-Stress Survivor,60143,CMA,CMA_daily.csv,investing,raw,,
+ZION,Zions Bancorporation,2,High-Stress Survivor,276579,ZION,ZION_daily.csv,yahoo,adjusted,,
+NYCB,New York Community Bank,2,High-Stress Survivor,694904,FLG,FLG_daily.csv,yahoo,adjusted,,Reports under FDIC cert 32541 (Flagstar Bank N.A.) from Q4-2022; ticker later changed from NYCB to FLG
+FITB,Fifth Third Bank,3,Regional Peer,723112,FITB,FITB_daily.csv,yahoo,adjusted,,
+KEY,KeyBank,3,Regional Peer,280110,KEY,KEY_daily.csv,yahoo,adjusted,,
+RF,Regions Bank,3,Regional Peer,233031,RF,RF_daily.csv,yahoo,adjusted,,
+MTB,M&T Bank,3,Regional Peer,501105,MTB,MTB_daily.csv,yahoo,adjusted,,
+HBAN,Huntington National Bank,3,Regional Peer,12311,HBAN,HBAN_daily.csv,yahoo,adjusted,,
+CFG,Citizens Bank,3,Regional Peer,3303298,CFG,CFG_daily.csv,yahoo,adjusted,,Listed from 2014-09-24
+JPM,JPMorgan Chase Bank,4,Mega G-SIB,852218,JPM,JPM_daily.csv,yahoo,adjusted,,
+BAC,Bank of America,4,Mega G-SIB,480228,BAC,BAC_daily.csv,yahoo,adjusted,,
+WFC,Wells Fargo Bank,4,Mega G-SIB,451965,WFC,WFC_daily.csv,yahoo,adjusted,,
+PNC,PNC Bank,4,Mega G-SIB,817824,PNC,PNC_daily.csv,yahoo,adjusted,,
+USB,U.S. Bank,4,Mega G-SIB,504713,USB,USB_daily.csv,yahoo,adjusted,,
