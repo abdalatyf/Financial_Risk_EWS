@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import os
 import math
+import sys
 
 class MySQLDataLoader:
     def __init__(self, host, user, password, database, processed_dir, banks_csv_path):
@@ -19,7 +20,7 @@ class MySQLDataLoader:
         self.idrssd_to_ticker = dict(zip(self.banks_df['idrssd'].astype(str), self.banks_df['ticker']))
         self.ticker_to_idrssd = dict(zip(self.banks_df['ticker'], self.banks_df['idrssd'].astype(str)))
 
-    def connect(self):
+    def connect(self, force_rebuild=False):
         try:
             temp_conn = mysql.connector.connect(host=self.host, user=self.user, password=self.password)
             cursor = temp_conn.cursor()
@@ -27,13 +28,20 @@ class MySQLDataLoader:
             # Check if database exists and ask for user approval
             cursor.execute(f"SHOW DATABASES LIKE '{self.database}'")
             if cursor.fetchone():
-                print(f"\n[WARNING] Database '{self.database}' already exists.")
-                choice = input("Do you want to DROP the existing database and rebuild from scratch? (y/n): ")
-                if choice.strip().lower() == 'y':
+                if force_rebuild:
                     cursor.execute(f"DROP DATABASE {self.database}")
-                    print(f"[INFO] Database dropped successfully.")
+                    print(f"[INFO] Database '{self.database}' dropped successfully (force_rebuild=True).")
                 else:
-                    print("[INFO] Proceeding without dropping (using INSERT IGNORE).")
+                    print(f"\n[WARNING] Database '{self.database}' already exists.")
+                    try:
+                        choice = input("Do you want to DROP the existing database and rebuild from scratch? (y/n): ")
+                        if choice.strip().lower() == 'y':
+                            cursor.execute(f"DROP DATABASE {self.database}")
+                            print(f"[INFO] Database dropped successfully.")
+                        else:
+                            print("[INFO] Proceeding without dropping (using INSERT IGNORE).")
+                    except EOFError:
+                        print("[INFO] Non-interactive mode detected. Proceeding without dropping.")
                     
             cursor.execute(f"CREATE DATABASE IF NOT EXISTS {self.database}")
             temp_conn.close()
@@ -53,7 +61,9 @@ class MySQLDataLoader:
             idrssd INT PRIMARY KEY,
             ticker VARCHAR(10),
             bank_id VARCHAR(20),
-            bank_name VARCHAR(100)
+            bank_name VARCHAR(100),
+            tier INT,
+            tier_label VARCHAR(50)
         )""")
 
         cursor.execute("""
@@ -61,7 +71,8 @@ class MySQLDataLoader:
             quarter_id VARCHAR(10) PRIMARY KEY,
             year INT,
             quarter_num INT,
-            quarter_end_date DATE
+            quarter_end_date DATE,
+            era VARCHAR(50)
         )""")
 
         cursor.execute("""
@@ -147,18 +158,27 @@ class MySQLDataLoader:
 
         print("DataFrames loaded. Beginning normalization and inserts...")
 
-        banks = df_fin[['IDRSSD', 'Bank_ID', 'Bank_Name']].drop_duplicates()
-        for _, row in banks.iterrows():
-            idrssd = int(row['IDRSSD'])
-            ticker = self.idrssd_to_ticker.get(str(idrssd), 'UNKNOWN')
-            cursor.execute("INSERT IGNORE INTO dim_bank (idrssd, ticker, bank_id, bank_name) VALUES (%s, %s, %s, %s)",
-                           (idrssd, ticker, row['Bank_ID'], row['Bank_Name']))
+        for _, row in self.banks_df.iterrows():
+            idrssd = int(row['idrssd'])
+            cursor.execute("""
+                INSERT IGNORE INTO dim_bank (idrssd, ticker, bank_id, bank_name, tier, tier_label) 
+                VALUES (%s, %s, %s, %s, %s, %s)
+            """, (idrssd, str(row['ticker']), str(row['bank_id']), str(row['bank_name']), int(row['tier']), str(row['tier_label'])))
         
+        def get_era(year):
+            if year <= 2009: return 'GFC (2008-2009)'
+            elif year <= 2015: return 'ZIRP & Recovery (2010-2015)'
+            elif year <= 2019: return 'Rate Normalization (2016-2019)'
+            elif year <= 2021: return 'COVID Deposit Surge (2020-2021)'
+            else: return 'Inflation & Rate Shock (2022-2023)'
+
         dates = pd.to_datetime(df_market['Date'].dropna().unique())
         for d in dates:
             q_id = f"{d.year}-Q{d.quarter}"
-            cursor.execute("INSERT IGNORE INTO dim_quarter (quarter_id, year, quarter_num, quarter_end_date) VALUES (%s, %s, %s, %s)",
-                           (q_id, d.year, d.quarter, d.to_period('Q').end_time.date()))
+            cursor.execute("""
+                INSERT IGNORE INTO dim_quarter (quarter_id, year, quarter_num, quarter_end_date, era) 
+                VALUES (%s, %s, %s, %s, %s)
+            """, (q_id, d.year, d.quarter, d.to_period('Q').end_time.date(), get_era(d.year)))
             cursor.execute("INSERT IGNORE INTO dim_date (date, quarter_id, day_of_week) VALUES (%s, %s, %s)",
                            (d.date(), q_id, d.strftime('%A')))
 
@@ -242,6 +262,7 @@ if __name__ == "__main__":
     if not loader.password or loader.password == "YOUR_PASSWORD_HERE":
         print("[ERROR] Please update the .env file with your actual MySQL password before running.")
     else:
-        loader.connect()
+        force = "--rebuild" in sys.argv or "-y" in sys.argv
+        loader.connect(force_rebuild=force)
         loader.create_schema()
         loader.load_data()

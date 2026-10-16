@@ -4,11 +4,12 @@ import os
 import time
 
 # Target Directory
-target_dir = r"D:\Projects\EWS\EWS_SourceCode\data\raw\market_daily"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+target_dir = os.path.join(BASE_DIR, "data", "raw", "market_daily")
 os.makedirs(target_dir, exist_ok=True)
 
-# The 18 Banks to pull (SIVB and CMA are already done via CSV)
-# Note: For NYCB, the ticker changed to FLG. For PacWest, it's BANC. 
+# The 18 Banks to pull (SIVB and CMA are already done via CSV; PACW is sourced from investing.com)
+# Note: For NYCB, the ticker changed to FLG.
 # We'll use the active tickers that contain their historical data on Yahoo.
 tickers = {
     "JPM": "JPMorgan",
@@ -23,7 +24,7 @@ tickers = {
     "HBAN": "Huntington",
     "CFG": "Citizens",
     "WAL": "Western Alliance",
-    "BANC": "PacWest (now BANC)",
+    "PACW": "Pacific Western Bank",
     "ZION": "Zions",
     "FLG": "New York Community (now FLG)",
     # Delisted / OTC tickers

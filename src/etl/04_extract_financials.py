@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import glob
 import os
 
@@ -96,17 +97,34 @@ class FFIECFinancialsExtractor:
                         bank_data[idrssd]["FHLB_Advances"] = fhlb_val
 
             for idrssd, metrics in bank_data.items():
+                total_assets = metrics.get("Total_Assets", 0.0)
+                # Only append active bank filings (excludes FRC pre-charter quarters 2008-Q1 to 2010-Q2)
+                if total_assets == 0.0:
+                    continue
+
                 bank_id, bank_name = self.idrssd_to_meta[idrssd]
                 row_data = {"Date": quarter_date, "Bank_ID": bank_id, "Bank_Name": bank_name, "IDRSSD": idrssd}
                 
                 for metric_name in self.metrics.keys():
-                    row_data[metric_name] = metrics.get(metric_name, 0.0)
+                    val = metrics.get(metric_name, 0.0)
+                    # Basel III CET1 did not exist pre-2015; store as NaN instead of 0.0
+                    if metric_name == "CET1_Ratio_Pct" and val == 0.0:
+                        row_data[metric_name] = np.nan
+                    else:
+                        row_data[metric_name] = val
+
                 row_data["Total_Deposits"] = metrics.get("Total_Deposits", 0.0)
-                row_data["Uninsured_Deposits"] = metrics.get("Uninsured_Deposits", 0.0)
+                
+                # Uninsured deposits was not filed by SI pre-2018 or WAL pre-2011; store as NaN if 0.0
+                unins_dep = metrics.get("Uninsured_Deposits", 0.0)
+                if unins_dep == 0.0:
+                    row_data["Uninsured_Deposits"] = np.nan
+                else:
+                    row_data["Uninsured_Deposits"] = unins_dep
+
                 row_data["Short_Term_Borrowings"] = metrics.get("Short_Term_Borrowings", 0.0)
                 row_data["FHLB_Advances"] = metrics.get("FHLB_Advances", 0.0)
                 
-                # Default empty/missing metrics to 0
                 self.master_financials.append(row_data)
 
         except Exception as e:

@@ -21,7 +21,7 @@ To prove *why* SVB failed while others survived, our EWS contrasts Silicon Valle
 | :--- | :--- | :--- |
 | **1** | **Crisis Casualties** | Silicon Valley Bank, Signature Bank, First Republic, Silvergate |
 | **2** | **High-Stress Survivors** | PacWest, Western Alliance, Zions, Comerica, NYCB |
-| **3** | **Regional Peers** | KeyBank, Fifth Third, M&T, Huntington, Citizens |
+| **3** | **Regional Peers** | KeyBank, Fifth Third, Regions Bank, M&T, Huntington, Citizens |
 | **4** | **Mega G-SIBs** | JPMorgan, Bank of America, Wells Fargo, PNC, U.S. Bank |
 
 ---
@@ -59,7 +59,7 @@ We have provided a fully automated script manager for seamless installation and 
 ### Step 1: Configure Database Credentials
 1. In the root directory, locate the `.env.example` file.
 2. Rename it to exactly: `.env`
-3. Open it and type in your local MySQL `DB_PASSWORD`. (This file is strictly ignored by Git to protect your password).
+3. Open it and type in your local MySQL `MYSQL_PASSWORD`. (This file is strictly ignored by Git to protect your password).
 
 ### Step 2: Run the Pipeline
 If you are on Windows, simply double click the script manager:
