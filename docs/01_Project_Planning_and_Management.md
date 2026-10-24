@@ -89,20 +89,22 @@ flowchart TD
 | **Milestone 3** | **30 Nov 2026** | Implementation (ETL Pipeline, Python Risk Engine, MySQL Loader, Power BI) | **Scheduled** |
 | **Milestone 4** | **04 Dec 2026** | QA Test Plan, Backtest Validation, User Manual, Final PPT, Video Demonstration | **Scheduled** |
 
+
 ---
 
 ### 1.3 Task Assignment & Team Roles
 
 The project operates under a professional Agile structure dividing responsibilities across Business/Finance Leadership and Technical Engineering:
 
-| Team Member | Student ID / Email | Assigned Role | Core Responsibilities & Deliverables |
-| :--- | :--- | :--- | :--- |
-| **Abdalatyf Ahmed Ibrahim** | *[Student ID / Email]* | **Team Leader, Lead Data Architect & QA Manager** | Overall project delivery, data pipeline architecture, database design, GitHub repository ownership, code reviews, DevOps automation, final technical compilation. |
-| **Hazem** | *[ID / Email]* | **Financial Lead 1 (Risk & Quantitative Analytics)** | Mathematical formula definitions, accounting integrity, regulatory capital adjustments, EWS index weighting, warning thresholds (Green/Amber/Red). |
-| **Lotfy** | *[ID / Email]* | **Financial Lead 2 (Strategy, UI/UX & Storyboard)** | Macroeconomic research, crisis event timeline, Figma dashboard wireframes and design system, user narrative, final defense presentation slides. |
-| **CS Student 1** | *[ID / Email]* | **Lead Power BI Developer** | Data model connectivity, DAX measure creation, Power BI visualization execution based on Figma prototypes, drill-down interactivity. |
-| **CS Student 2** | *[ID / Email]* | **Python Engineer** | Implementation of Layer 1–4 risk metrics in `06_calculate_risk_metrics.py`, rolling time-series calculations, database push-down routines. |
-| **CS Student 3** | *[ID / Email]* | **Co-Power BI Developer** | Collaborates on Power BI report design, visual formatting, interactive bookmarks, DAX measure creation, and connecting MySQL views to dashboard screens. |
+| Team Member Name | Student ID | Contact Details | Assigned Role & Core Deliverables |
+| :--- | :---: | :--- | :--- |
+| **Abdalatyf Ahmed Ibrahim** | *[Group Leader]* | `BNS5_DAT3_S1` | **Team Leader, Lead Data Architect & Backend Engineer** <br> Overall project architecture, GitHub repo ownership, MySQL Star Schema design, Python ETL engine (`01b`–`05`), code reviews, DevOps automation, final technical deliverable compilation. |
+| **Hazem Taha Hosny Taha** <br> *(حازم طه حسني طه)* | **21154651** | `hazemhany114@gmail.com` <br> `01008035084` | **Financial Lead 1 (Risk & Quantitative Analytics)** <br> Mathematical formulation of 31 risk metrics, regulatory capital adjustments (AOCI & HTM), warning thresholds (🟢/🟡/🔴), and Composite EWS score weighting. |
+| **Mohamed Lotfy Makram Abdelkader** <br> *(محمد لطفي مكرم عبد القادر)* | **21080880** | `ml9395334@gmail.com` <br> `01110754480` | **Financial Lead 2 (Strategy, UI/UX & Storyboard)** <br> Macroeconomic research & crisis chronology, Figma executive design system & wireframes, narrative storyboard, and final defense presentation design. |
+| **Mohamed Kamel Farouk Kamel** <br> *(محمد كامل فاروق كامل)* | **21035035** | `mohamedkamelfarouk22@gmail.com` <br> `01270144188` | **Lead Power BI Developer (Core Risk Pages 1–4)** <br> Power BI data model connectivity to MySQL, DAX calculation engine, execution of Core Risk Views (Executive Heatmap, Run Risk Scatter, Rate Shock, Hidden Solvency). |
+| **Omar Mohamed Abdulwahab Mohamed** <br> *(عمر محمد عبد الوهاب محمد)* | **21172370** | `Omarlabib555@gmail.com` <br> `01212520727` | **QA, Automated Testing & Model Validation Lead** <br> Automated Python test suites (`tests/test_etl_qa.py`), model backtesting validation, Confusion Matrix & Lead Time auditing, Milestone 4 QA compliance reports. |
+| **Ibrahim Mosleh Ibrahim Ahmed** <br> *(إبراهيم مصلح إبراهيم أحمد)* | **21167200** | `ibrahimmosleh686@gmail.com` <br> `01207327126` | **Co-Power BI Developer (Portfolio & Deep Dives Pages 5–8 + 9)** <br> Development of Loan & Liquidity Deep-Dive views, Single-Bank Drill-Down (Page 9), interactive tooltips, cross-filtering bookmarks, and UI component styling from Figma. |
+
 
 ---
 
