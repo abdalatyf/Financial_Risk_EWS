@@ -242,6 +242,12 @@ class TestETLQualityAssurance(unittest.TestCase):
         self.assertAlmostEqual(row['HTM_Securities'], 91327000.0, delta=1000000.0)
         # Uninsured Deposits ~ $151,593M ($151.6B)
         self.assertAlmostEqual(row['Uninsured_Deposits'], 151593000.0, delta=1000000.0)
+        # Foreign Deposits (Cayman branch) ~ $13,899M ($13.9B)
+        self.assertAlmostEqual(row['Foreign_Deposits'], 13899000.0, delta=100000.0)
+        # Domestic Deposits ~ $161,479M ($161.5B)
+        self.assertAlmostEqual(row['Domestic_Deposits'], 161479000.0, delta=1000000.0)
+        # Total Deposits == Domestic + Foreign
+        self.assertAlmostEqual(row['Total_Deposits'], row['Domestic_Deposits'] + row['Foreign_Deposits'], delta=1.0)
 
     def test_18_ytd_income_conversion_quarterly_variance(self):
         """Test 18: Quarterly Net_Income varies properly and is not monotonic YTD."""

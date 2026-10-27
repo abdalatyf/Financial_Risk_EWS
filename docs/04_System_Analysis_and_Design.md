@@ -205,11 +205,11 @@ erDiagram
   * `dim_bank`: Stores static institution descriptors, ticker symbols, FDIC Certificate, Federal Reserve IDRSSD, and vulnerability classification (`tier` 1 to 4, `tier_label`).
   * `dim_quarter`: Stores quarterly calendar attributes and macroeconomic regimes (`era`: GFC, ZIRP, Normalization, COVID Surge, Rate Shock).
   * `dim_date`: Comprehensive daily calendar linking daily market observations to quarterly financial cycles.
-  * `dim_financial_metric`: Metadata catalog defining the 20 core Call Report line items across Balance Sheet (`RC`), Income Statement (`RI`), Regulatory Capital (`RC-R`), and Uninsured Deposits (`RC-O`).
+  * `dim_financial_metric`: Metadata catalog defining the 22 core Call Report line items across Balance Sheet (`RC`), Income Statement (`RI`), Regulatory Capital (`RC-R`), and Uninsured & Foreign Deposits (`RC-O`, `RC-E`).
   * `dim_loan_sector`: 16 discrete lending categories extracted from Schedule RC-C (e.g. Commercial Real Estate, 1-4 Family Residential, Construction, C&I).
   * `dim_macro_fed_rates`: Daily Federal Funds Effective Rate time series sourced from FRED.
 * **Fact Tables (3):**
-  * `fact_financials`: 23,218 normalized rows (1,190 bank-quarters × 20 metrics, accounting for structural nulls) stored in third normal form (3NF).
+  * `fact_financials`: 25,598 normalized rows (1,190 bank-quarters × 22 metrics, accounting for structural nulls) stored in third normal form (3NF).
   * `fact_loan_balances`: 19,040 normalized rows (1,190 bank-quarters × 16 loan sectors).
   * `fact_daily_market`: 74,525 daily market observations with OHLC prices and trade volumes.
 
@@ -268,7 +268,7 @@ sequenceDiagram
     Bat->>Py: Run 03 (Transform Market & Fed Data)
     Dev->>Py: Execute 05_load_to_mysql.py --rebuild
     Py->>DB: Verify / Create Star Schema (9 Tables)
-    Py->>DB: Bulk Insert ~116,783 Normalized Rows
+    Py->>DB: Bulk Insert ~119,163 Normalized Rows
     DB-->>Py: Transaction Commit Confirmed
     Dev->>BI: Connect to MySQL Database
     BI->>DB: Query Optimized Analytical Views

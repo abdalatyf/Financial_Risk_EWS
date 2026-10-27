@@ -60,7 +60,7 @@ All tests are implemented in Python's standard `unittest` framework and run non-
 | **TC-14** | Dimensionality | Verify `dim_bank` contains `tier` and `tier_label` for all 20 banks. | 20 rows, non-null tiers | 20 rows, all tiers populated | 🟢 **PASS** |
 | **TC-15** | Dimensionality | Verify `dim_quarter` contains macro `era` classifications. | $\ge 4$ unique eras, 0 nulls | 5 unique eras, 0 nulls | 🟢 **PASS** |
 | **TC-16** | Referential | Assert zero orphan foreign keys in fact tables. | 0 orphan records | 0 orphans in all 3 facts | 🟢 **PASS** |
-| **TC-17** | Forensic | Verify SVB Q4-2022 matches official Call Report filings. | Assets \$209B, HTM \$91B, Uninsured \$151B | Exact matches ($\Delta < 0.1\%$) | 🟢 **PASS** |
+| **TC-17** | Forensic | Verify SVB Q4-2022 matches official Call Report filings. | Assets \$209B, HTM \$91B, Uninsured \$151B, Foreign \$13.9B | Exact matches ($\Delta < 0.1\%$) | 🟢 **PASS** |
 | **TC-18** | Accounting | Verify YTD-to-quarterly net income conversion is non-monotonic. | Q4 $\ne \sum(\text{Q1–Q4})$ | True quarterly verified | 🟢 **PASS** |
 | **TC-19** | DevOps | Validate `setup_and_run.bat` portability. | Exists, 0 drive hardcodes | File present and portable | 🟢 **PASS** |
 | **TC-20** | Security | Validate `.env` git exclusion and `.env.example` sanitization. | `.env` ignored, dummy pass | Password protected | 🟢 **PASS** |

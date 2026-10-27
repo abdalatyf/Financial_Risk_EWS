@@ -72,9 +72,13 @@ class FFIECFinancialsExtractor:
                             if bank_data[idrssd][ratio_metric] > 1.0:
                                 bank_data[idrssd][ratio_metric] = bank_data[idrssd][ratio_metric] / 100.0
 
-                    # Total Deposits: sum of RCON2200 (domestic) and RCFN2200 (foreign)
+                    # Deposits: Domestic (RCON2200), Foreign (RCFN2200), and Consolidated Total
                     dom_dep = self.get_val(row, '2200', prefixes=['RCON'])
                     for_dep = self.get_val(row, '2200', prefixes=['RCFN'])
+                    if dom_dep != 0 and ("Domestic_Deposits" not in bank_data[idrssd] or bank_data[idrssd]["Domestic_Deposits"] == 0):
+                        bank_data[idrssd]["Domestic_Deposits"] = dom_dep
+                    if for_dep != 0 and ("Foreign_Deposits" not in bank_data[idrssd] or bank_data[idrssd]["Foreign_Deposits"] == 0):
+                        bank_data[idrssd]["Foreign_Deposits"] = for_dep
                     total_dep = dom_dep + for_dep
                     if total_dep != 0 and ("Total_Deposits" not in bank_data[idrssd] or bank_data[idrssd]["Total_Deposits"] == 0):
                         bank_data[idrssd]["Total_Deposits"] = total_dep
@@ -113,7 +117,17 @@ class FFIECFinancialsExtractor:
                     else:
                         row_data[metric_name] = val
 
-                row_data["Total_Deposits"] = metrics.get("Total_Deposits", 0.0)
+                dom_dep = metrics.get("Domestic_Deposits", 0.0)
+                for_dep = metrics.get("Foreign_Deposits", 0.0)
+                total_dep = metrics.get("Total_Deposits", 0.0)
+                if total_dep == 0.0:
+                    total_dep = dom_dep + for_dep
+                if dom_dep == 0.0 and for_dep == 0.0 and total_dep > 0.0:
+                    dom_dep = total_dep
+
+                row_data["Domestic_Deposits"] = dom_dep
+                row_data["Foreign_Deposits"] = for_dep
+                row_data["Total_Deposits"] = total_dep
                 
                 # Uninsured deposits was not filed by SI pre-2018 or WAL pre-2011; store as NaN if 0.0
                 unins_dep = metrics.get("Uninsured_Deposits", 0.0)

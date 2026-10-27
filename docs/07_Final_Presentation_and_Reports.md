@@ -55,11 +55,11 @@ Bank examiners and risk analysts should interpret key metrics according to the f
 #### 1. System Architecture Summary
 The system operates on a decoupled **Push-Down Analytical Architecture**:
 * **ETL & Processing Layer:** Python 3.11 (`pandas`, `numpy`, `mysql-connector-python`) extracts raw FFIEC Call Report text archives, cleans anomalies (recovering 639 capital ratios and consolidating bank mergers), and computes 31 risk measures.
-* **Storage Layer:** MySQL 8.0 relational Star Schema (`Financial_Risk_EWS_db`) consisting of 6 dimension tables and 3 fact tables storing 116,783 rows.
+* **Storage Layer:** MySQL 8.0 relational Star Schema (`Financial_Risk_EWS_db`) consisting of 6 dimension tables and 3 fact tables storing 119,163 rows.
 * **Presentation Layer:** Microsoft Power BI Desktop connected to relational tables and pre-aggregated analytical SQL views.
 
 #### 2. Regulatory Data Dictionary (Core Fact Financials)
-The warehouse tracks 20 fundamental financial metrics per bank-quarter extracted directly from official FFIEC MDRM series:
+The warehouse tracks 22 fundamental financial metrics per bank-quarter extracted directly from official FFIEC MDRM series:
 
 | Metric Column Name | FFIEC Schedule | Primary MDRM Code | Description & Accounting Treatment |
 | :--- | :---: | :---: | :--- |
@@ -73,8 +73,10 @@ The warehouse tracks 20 fundamental financial metrics per bank-quarter extracted
 | `HTM_Fair_Value` | RC-B | `RCFD1771` | Held-to-Maturity market fair value ($000s). |
 | `AFS_Fair_Value` | RC-B | `RCFD1773` | Available-for-Sale market fair value ($000s). |
 | `Total_Loans_Net` | RC | `RCFD2122` | Net loans and leases held for investment ($000s). |
-| `Total_Deposits` | RC-E | `RCON2200` / `RCFN2200` | Total consolidated domestic and foreign deposits ($000s). |
-| `Uninsured_Deposits` | RC-O | `RCON5597` / `RCFD5597` | Estimated uninsured deposits exceeding FDIC insurance limits ($000s). |
+| `Domestic_Deposits` | RC | `RCON2200` | Total deposits in domestic U.S. offices ($000s). |
+| `Foreign_Deposits` | RC | `RCFN2200` | Total deposits in foreign offices & offshore branches ($000s) (100% uninsured by law). |
+| `Total_Deposits` | RC | `RCFD2200` / `RCON2200+RCFN2200` | Total consolidated domestic and foreign deposits ($000s). |
+| `Uninsured_Deposits` | RC-O | `RCON5597` / `RCFD5597` | Estimated uninsured deposits in domestic offices exceeding $250K limit ($000s). |
 | `Short_Term_Borrowings`| RC-M | `RCFDB993` + `B995` + `3190` | Federal funds purchased, repurchase agreements, and short-term debt. |
 | `Tier1_Capital` | RC-R | `RCFD8274` | Tier 1 regulatory capital ($000s). |
 | `CET1_Capital` | RC-R | `RCFDP841` | Common Equity Tier 1 capital ($000s) (active post-2014 under Basel III). |
