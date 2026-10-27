@@ -5,8 +5,8 @@
 **Group ID:** BNS5_DAT3_S1  
 **Project Name:** Financial Risk Early Warning System (EWS)  
 **QA & Testing Lead:** Omar Mohamed Abdulwahab Mohamed (Student ID: 21172370) (Under direction of Abdalatyf Ahmed Ibrahim, Team Leader)  
-**Execution Date:** October 17, 2026  
-**Test Suite Status:** 🟢 **20 / 20 Tests Passed (100% Pass Rate in 0.508s)**  
+**Execution Date:** October 27, 2026  
+**Test Suite Status:** 🟢 **21 / 21 Tests Passed (100% Pass Rate in 0.485s)**  
 
 ---
 
@@ -20,10 +20,11 @@ ETL & Database QA Architecture:
 │   ├── No hardcoded filesystem drive paths (dynamic BASE_DIR)
 │   ├── Entity coverage (20 unique banks, 4 risk tiers)
 │   └── Secret isolation (.env ignored, .env.example sanitized)
-├── 2. Structural & Mathematical Integrity (Tests 03-09, 18)
+├── 2. Structural & Mathematical Integrity (Tests 03-09, 18, 21)
 │   ├── Exact bank-quarter alignment (1,190 active rows across facts)
 │   ├── Structural NULL handling (Basel III CET1 pre-2015, SI/WAL uninsured)
-│   ├── Balance sheet identity (Assets = Liabilities + Equity)
+│   ├── Balance sheet identity (Assets = Liabilities + Equity + NCI)
+│   ├── Deposit decomposition (Total = Domestic + Foreign)
 │   └── Loan sector gross/net reconciliation (< 2% unearned variance)
 ├── 3. Market & Macro Data Quality (Tests 10-12)
 │   ├── Physical OHLC bounding (Low <= Open/Close <= High)
@@ -64,6 +65,7 @@ All tests are implemented in Python's standard `unittest` framework and run non-
 | **TC-18** | Accounting | Verify YTD-to-quarterly net income conversion is non-monotonic. | Q4 $\ne \sum(\text{Q1–Q4})$ | True quarterly verified | 🟢 **PASS** |
 | **TC-19** | DevOps | Validate `setup_and_run.bat` portability. | Exists, 0 drive hardcodes | File present and portable | 🟢 **PASS** |
 | **TC-20** | Security | Validate `.env` git exclusion and `.env.example` sanitization. | `.env` ignored, dummy pass | Password protected | 🟢 **PASS** |
+| **TC-21** | Deposit Math | Verify deposit decomposition: $\text{Total} == \text{Domestic} + \text{Foreign}$. | 0 violations across 1,190 rows | 0 violations (max diff $0.0$) | 🟢 **PASS** |
 
 ---
 

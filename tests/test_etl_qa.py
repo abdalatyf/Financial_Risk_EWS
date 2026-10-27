@@ -278,5 +278,17 @@ class TestETLQualityAssurance(unittest.TestCase):
             ex_content = f.read()
             self.assertIn("YOUR_PASSWORD_HERE", ex_content, ".env.example must have placeholder password")
 
+    def test_21_deposit_decomposition_identity(self):
+        """Test 21: Verify Total_Deposits == Domestic_Deposits + Foreign_Deposits (|diff| <= 1.0) with 0 violations across all 1,190 bank-quarters."""
+        df_fin = pd.read_csv(self.fin_csv)
+        self.assertIn('Domestic_Deposits', df_fin.columns, "Domestic_Deposits column missing in fact_financials")
+        self.assertIn('Foreign_Deposits', df_fin.columns, "Foreign_Deposits column missing in fact_financials")
+        self.assertIn('Total_Deposits', df_fin.columns, "Total_Deposits column missing in fact_financials")
+        self.assertEqual(len(df_fin), 1190, f"Expected 1,190 rows in fact_financials, got {len(df_fin)}")
+        
+        diff = np.abs(df_fin['Total_Deposits'] - (df_fin['Domestic_Deposits'] + df_fin['Foreign_Deposits']))
+        violations = (diff > 1.0).sum()
+        self.assertEqual(violations, 0, f"Found {violations} deposit decomposition violations (|diff| > 1.0)")
+
 if __name__ == "__main__":
     unittest.main()
