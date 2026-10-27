@@ -19,7 +19,7 @@ class FFIECFinancialsExtractor:
         
         self.metrics = {
             "Total_Assets": "2170", "Cash_Balances": "0010", "Total_Liabilities": "2948",
-            "Total_Equity": "3210",
+            "Total_Equity": "3210", "Noncontrolling_Interest": "3000",
             "Tier1_Capital": "8274", "HTM_Securities": "1754", "AFS_Securities": "1773",
             "Risk_Weighted_Assets": "A223", "Tier1_Ratio_Pct": "7206",
             # --- HAZEM EXTENDED ANALYTICS METRICS ---

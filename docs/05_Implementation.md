@@ -30,6 +30,7 @@ src/
 All codebase components follow strict modular paradigms with comprehensive docstrings explaining regulatory background, MDRM code mappings, and mathematical logic:
 * **Physical Staging Cache (`01b_unzip_call_reports.py`):** Employs an "Extract Once, Read Many" strategy. Rather than repeatedly parsing 60 compressed ZIP files (~1.5 GB) in memory, targeted schedules (`RC`, `RI`, `RC-C`, `RC-R`, `RC-O`) are staged once into `data/raw/ffiec_extracted/`. This cut extraction runtime from 8 minutes to under 8 seconds.
 * **Unified Extraction Helper (`get_val`):** Dynamically scans candidate MDRM series (`RCFD`, `RCON`, `RCOA`), strips non-numeric artifacts (such as `%` symbols injected by the FFIEC in 2015), and safely casts values to numeric types while preserving structural missing data as `NaN`.
+* **FASB 160 Noncontrolling Interest Recovery (`RCFD3000`):** Extracts minority interest in consolidated subsidiaries, ensuring 100% adherence to the U.S. GAAP consolidated balance sheet identity ($\text{Assets} = \text{Liabilities} + \text{Bank Equity} + \text{Noncontrolling Interest}$) and eliminating all historical discrepancies ($221 \rightarrow 0$).
 
 #### 2. Coding Standards & Naming Conventions
 * **PEP 8 Compliance:** All Python code adheres to PEP 8 style standards, utilizing 4-space indentation, descriptive snake_case variable and function names, and uppercase constants.
@@ -121,7 +122,7 @@ The script performs the following actions automatically:
 5. Enforces OHLC bounds and processes market/Fed data (`03_transform_market_fed.py`).
 6. Extracts quarterly balance sheets and recovers capital ratios (`04_extract_financials.py`).
 7. Executes the automated 20-test QA suite (`tests/test_etl_qa.py`).
-8. Initializes the MySQL Star Schema and loads 116,175 rows (`05_load_to_mysql.py --rebuild`).
+8. Initializes the MySQL Star Schema and loads 116,783 rows (`05_load_to_mysql.py --rebuild`).
 
 #### 4. Executable Files & Deployment Artifacts
 * **`setup_and_run.bat`:** Windows automated bootstrap runner.

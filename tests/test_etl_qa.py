@@ -100,13 +100,15 @@ class TestETLQualityAssurance(unittest.TestCase):
         self.assertEqual((wal_historical['Uninsured_Deposits'] == 0.0).sum(), 0, "WAL missing uninsured must be NaN")
 
     def test_08_accounting_identity_balance_sheet(self):
-        """Test 8: Assets = Liabilities + Equity identity holds across the panel."""
+        """Test 8: Assets = Liabilities + Equity + Noncontrolling Interest holds across all 1,190 quarters."""
         df_fin = pd.read_csv(self.fin_csv)
-        diff = np.abs(df_fin['Total_Assets'] - (df_fin['Total_Liabilities'] + df_fin['Total_Equity']))
-        # In pre-2009 FFIEC filings, mezzanine Minority Interest (FASB 160) accounts for ~2% variance in select GFC quarters
+        self.assertIn('Noncontrolling_Interest', df_fin.columns, "Noncontrolling_Interest column missing in fact_financials")
+        nci = df_fin['Noncontrolling_Interest'].fillna(0.0)
+        total_funding = df_fin['Total_Liabilities'] + df_fin['Total_Equity'] + nci
+        diff = np.abs(df_fin['Total_Assets'] - total_funding)
         relative_diff = diff / df_fin['Total_Assets']
-        anomalies = (relative_diff > 0.03).sum()
-        self.assertEqual(anomalies, 0, f"Found {anomalies} accounting identity violations > 3%")
+        anomalies = (relative_diff > 0.001).sum()
+        self.assertEqual(anomalies, 0, f"Found {anomalies} accounting identity violations > 0.1% (expected 0 after NCI integration)")
 
     def test_09_loan_sector_sum_reconciliation(self):
         """Test 9: Sum of the 16 gross loan sectors minus unearned income matches Total_Loans."""

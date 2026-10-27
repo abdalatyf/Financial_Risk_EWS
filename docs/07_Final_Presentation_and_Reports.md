@@ -55,17 +55,18 @@ Bank examiners and risk analysts should interpret key metrics according to the f
 #### 1. System Architecture Summary
 The system operates on a decoupled **Push-Down Analytical Architecture**:
 * **ETL & Processing Layer:** Python 3.11 (`pandas`, `numpy`, `mysql-connector-python`) extracts raw FFIEC Call Report text archives, cleans anomalies (recovering 639 capital ratios and consolidating bank mergers), and computes 31 risk measures.
-* **Storage Layer:** MySQL 8.0 relational Star Schema (`Financial_Risk_EWS_db`) consisting of 6 dimension tables and 3 fact tables storing 116,175 rows.
+* **Storage Layer:** MySQL 8.0 relational Star Schema (`Financial_Risk_EWS_db`) consisting of 6 dimension tables and 3 fact tables storing 116,783 rows.
 * **Presentation Layer:** Microsoft Power BI Desktop connected to relational tables and pre-aggregated analytical SQL views.
 
 #### 2. Regulatory Data Dictionary (Core Fact Financials)
-The warehouse tracks 19 fundamental financial metrics per bank-quarter extracted directly from official FFIEC MDRM series:
+The warehouse tracks 20 fundamental financial metrics per bank-quarter extracted directly from official FFIEC MDRM series:
 
 | Metric Column Name | FFIEC Schedule | Primary MDRM Code | Description & Accounting Treatment |
 | :--- | :---: | :---: | :--- |
 | `Total_Assets` | RC | `RCFD2170` | Total assets of the consolidated banking institution ($000s). |
 | `Total_Liabilities` | RC | `RCFD2948` | Total liabilities ($000s). |
 | `Total_Equity` | RC | `RCFD3210` | Total bank equity capital ($000s). |
+| `Noncontrolling_Interest`| RC | `RCFD3000` | Noncontrolling / minority interests in consolidated subsidiaries ($000s). |
 | `Cash_Balances` | RC-A | `RCFD0010` | Cash and balances due from depository institutions ($000s). |
 | `Total_Securities` | RC | `RCFD1754` | Total held investment securities ($000s). |
 | `HTM_Book_Value` | RC-B | `RCFD1754` | Held-to-Maturity amortized book cost ($000s). |

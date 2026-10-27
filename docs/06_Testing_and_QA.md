@@ -51,7 +51,7 @@ All tests are implemented in Python's standard `unittest` framework and run non-
 | **TC-05** | Deduplication | Assert zero duplicate `(Date, IDRSSD)` keys in fact tables. | 0 duplicate keys | 0 duplicates found | 🟢 **PASS** |
 | **TC-06** | Data Quality | Verify pre-Basel III `CET1_Ratio_Pct` is stored as `NaN` not `0.0`. | 0 zeros pre-2014 | 0 zeros (470 valid nulls) | 🟢 **PASS** |
 | **TC-07** | Data Quality | Verify SI (2008–17) and WAL (2008–10) missing uninsured deposits are `NaN`. | 0 zeros where deposits exist | 0 zeros (40 SI, 12 WAL nulls)| 🟢 **PASS** |
-| **TC-08** | Accounting | Validate Balance Sheet identity: $\text{Assets} \approx \text{Liab} + \text{Equity}$. | Relative error $< 3\%$ | Max error $2.06\%$ (GFC PNC) | 🟢 **PASS** |
+| **TC-08** | Accounting | Validate Balance Sheet identity: $\text{Assets} = \text{Liab} + \text{Equity} + \text{NCI}$. | Discrepancy $< 0.1\%$ | Exactly 0 violations (100% balance) | 🟢 **PASS** |
 | **TC-09** | Loan Balancing | Assert $\sum(\text{16 Sectors}) \ge \text{Total Loans}$ and unearned delta $< 2\%$. | Gross $\ge$ Net; delta $< 2\%$ | Max unearned delta $1.43\%$ | 🟢 **PASS** |
 | **TC-10** | Market Bounds | Check physical OHLC ordering: $\text{Low} \le \text{Open/Close} \le \text{High}$. | 0 bound violations | 0 violations in 74,525 rows | 🟢 **PASS** |
 | **TC-11** | Market Halts | Check delisted banks (`SIVB`, `SBNY`, `FRCB`, `PACW`) stop at cutoff. | Max trade date $\le$ cutoff | All 4 banks strictly cut off | 🟢 **PASS** |
