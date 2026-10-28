@@ -4,9 +4,9 @@
 **Track:** Professional Data Analyst (DEPI Round 5)  
 **Group ID:** BNS5_DAT3_S1  
 **Project Name:** Financial Risk Early Warning System (EWS)  
-**QA & Testing Lead:** Omar Mohamed Abdulwahab Mohamed (Student ID: 21172370) (Under direction of Abdalatyf Ahmed Ibrahim, Team Leader)  
-**Execution Date:** October 27, 2026  
-**Test Suite Status:** 🟢 **21 / 21 Tests Passed (100% Pass Rate in 0.485s)**  
+**QA & Testing Lead:** Abdalatyf Ahmed Ibrahim (Team Leader, Lead Data Architect & Lead QA Auditor)  
+**Execution Date:** October 29, 2026  
+**Test Suite Status:** 🟢 **30 / 30 Tests Passed (100% Pass Rate in 1.9s)**  
 
 ---
 
@@ -153,6 +153,8 @@ A secondary automated test suite validates the quantitative analytics engine, me
 
 The entire data engineering and quantitative risk analytics pipeline has achieved **100% compliance** across all **30 automated tests** (22 ETL tests + 8 Analytics tests). The data warehouse and Power BI analytical views are verified clean, mathematically reconciled, and certified ready for dashboard rendering.
 
-* **Lead QA Auditor:** Omar Mohamed Abdulwahab Mohamed (Student ID: 21172370)  
-* **Lead Financial Modeler:** Hazem Taha Hosny (Student ID: 21172373)  
-* **Approved by:** Abdalatyf Ahmed Ibrahim (Team Leader & Lead Data Architect)
+* **Lead QA Auditor:** Abdalatyf Ahmed Ibrahim (Team Leader, Lead Data Architect & Lead QA Auditor)  
+* **Lead Financial Modeler:** Hazem Taha Hosny (Student ID: 21154651)  
+* **Lead UI/UX Designer & Storyboard:** Mohamed Lotfy Makram (Student ID: 21080880)  
+* **Power BI & Visual Analytics Team:** Mohamed Kamel Farouk (21035035), Omar Mohamed Abdulwahab (21172370), Ibrahim Mosleh Ibrahim (21167200)  
+* **Approved by:** Abdalatyf Ahmed Ibrahim (Team Leader)

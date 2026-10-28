@@ -12,3 +12,8 @@ env/
 
 # Large extracted txt files (2.7 GB)
 data/raw/ffiec_extracted/
+
+# Power BI Developer Mode (.pbip) user-specific files & local cache
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/editorSettings.json

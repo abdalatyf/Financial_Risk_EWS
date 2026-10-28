@@ -64,10 +64,11 @@ The team employs a modified **GitFlow** and **Feature Branching** workflow:
 * `develop`: Integration branch where data pipeline, risk calculation, and Power BI assets are staged.
 * `feature/*`: Dedicated task branches for individual team members:
   * `feature/financial-measures` (Hazem Taha Hosny)
-  * `feature/figma-storyboard` (Mohamed Lotfy)
-  * `feature/powerbi-core-pages` (Mohamed Kamel)
-  * `feature/qa-unit-tests` (Omar Mohamed Abdulwahab)
-  * `feature/powerbi-drilldown` (Ibrahim Mosleh)
+  * `feature/figma-uiux` (Mohamed Lotfy Makram)
+  * `feature/powerbi-core-pages` (Mohamed Kamel Farouk)
+  * `feature/powerbi-analytics` (Omar Mohamed Abdulwahab)
+  * `feature/powerbi-drilldown` (Ibrahim Mosleh Ibrahim)
+  * `feature/qa-unit-tests` (Abdalatyf Ahmed Ibrahim)
 
 #### 2. Commit History & Documentation
 Every commit adheres to Conventional Commits standards:
