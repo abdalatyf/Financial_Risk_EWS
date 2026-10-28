@@ -198,27 +198,53 @@ erDiagram
         decimal close_price
         bigint volume
     }
+
+    dim_risk_metric {
+        int metric_id PK
+        string metric_code UK
+        string metric_name
+        string category
+        boolean is_core
+        string risk_direction
+        string description
+    }
+
+    fact_risk_metrics {
+        string quarter_id PK, FK
+        int idrssd PK, FK
+        int metric_id PK, FK
+        decimal metric_value
+    }
 ```
 
 #### 2. Logical & Physical Schema Details
-* **Dimension Tables (6):**
+* **Dimension Tables (7):**
   * `dim_bank`: Stores static institution descriptors, ticker symbols, FDIC Certificate, Federal Reserve IDRSSD, and vulnerability classification (`tier` 1 to 4, `tier_label`).
   * `dim_quarter`: Stores quarterly calendar attributes and macroeconomic regimes (`era`: GFC, ZIRP, Normalization, COVID Surge, Rate Shock).
   * `dim_date`: Comprehensive daily calendar linking daily market observations to quarterly financial cycles.
   * `dim_financial_metric`: Metadata catalog defining the 22 core Call Report line items across Balance Sheet (`RC`), Income Statement (`RI`), Regulatory Capital (`RC-R`), and Uninsured & Foreign Deposits (`RC-O`, `RC-E`).
   * `dim_loan_sector`: 16 discrete lending categories extracted from Schedule RC-C (e.g. Commercial Real Estate, 1-4 Family Residential, Construction, C&I).
   * `dim_macro_fed_rates`: Daily Federal Funds Effective Rate time series sourced from FRED.
-* **Fact Tables (3):**
+  * `dim_risk_metric`: Quantitative risk metrics metadata catalog defining the 34 indicators (Capital C1–C7, Liquidity L1–L6, Funding F1–F1b, Securities S1–S5, Credit K2–K4, Profitability P1–P4, Market M1–M3, and Composite EWS Score).
+* **Fact Tables (4):**
   * `fact_financials`: 25,598 normalized rows (1,190 bank-quarters × 22 metrics, accounting for structural nulls) stored in third normal form (3NF).
   * `fact_loan_balances`: 19,040 normalized rows (1,190 bank-quarters × 16 loan sectors).
   * `fact_daily_market`: 74,525 daily market observations with OHLC prices and trade volumes.
+  * `fact_risk_metrics`: 40,460 normalized rows (1,190 bank-quarters × 34 risk metrics) providing the analytical foundation for Power BI.
 
-#### 3. Normalization Considerations & Optimization
+#### 3. Power BI Analytical Views (SQL Layer)
+To decouple Power BI reporting from complex multi-table joins, the database exposes 4 high-speed analytical views:
+1. `vw_powerbi_executive_summary`: 1,190 rows (1 per bank-quarter) with the 0–100 Composite EWS Score, supervisory alert level (`GREEN`, `AMBER`, `RED`), and core stress drivers (LFR, C6, S1, L1, F1, K3).
+2. `vw_powerbi_bank_risk_wide`: 1,190 rows containing all 34 derived risk indicators in wide column format for comprehensive matrix slicing and correlation grids.
+3. `vw_powerbi_loan_concentration`: 19,040 rows (16 gross loan sectors per bank-quarter) joined with pre-aggregated loan risk indicators (`loan_hhi`, `cre_share`, `ci_share`) using subquery grouping to eliminate Cartesian product explosion.
+4. `vw_powerbi_market_daily`: 74,525 rows combining daily equity pricing, trade volume, and daily Effective Federal Funds Rates for market contagion analysis.
+
+#### 4. Normalization Considerations & Optimization
 * **Storage Efficiency:** Transitioning from "Wide" CSV tables (19-35 columns) to a normalized "Narrow/Long" Star Schema reduced sparse null storage by 64%.
 * **Composite Primary Keys:** Composite PKs `(quarter_id, idrssd, metric_id)` guarantee idempotent loading and zero duplicate entries.
 * **Indexing Strategy:** B-tree indexes are applied on foreign key joins `(idrssd, quarter_id)` and calendar dates, enabling analytical SQL view filtering in $< 50$ ms.
 
-#### 4. Schedule RC-C Loan Sector Reconciliation
+#### 5. Schedule RC-C Loan Sector Reconciliation
 Under FFIEC Call Report guidelines, the 16 discrete RC-C lending categories are reported **GROSS** (contractual loan balances). Schedule RC-C Line 10 reports contra-asset **Unearned Income on Loans** (`RCFD2123`), and Line 11/12 reports **Total Loans Net of Unearned Income** (`RCFD2122`):
 $$\text{Gross Total Loans} - \text{Unearned Income} \equiv \text{Total Loans (Net)}$$
 The staging CSV `fact_loan_sectors.csv` preserves `Gross_Total_Loans`, `Unearned_Income`, and `Total_Loans`, validating this identity with 0 discrepancies across all 1,190 bank-quarters, while `fact_loan_balances` loads the 16 gross sector allocations for drilldown reporting.

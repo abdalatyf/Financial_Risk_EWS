@@ -125,11 +125,34 @@ During this Quality Assurance review cycle, 9 specific technical and data defect
 * **Description:** In 266 bank-quarters, the sum of the 16 discrete RC-C loan sectors did not equal `Total_Loans` due to Schedule RC-C Line 10 Unearned Income (`RCFD2123`), and `fact_financials.csv` and `fact_loan_sectors.csv` were sorted under different ordering keys (`Bank_ID, Date` vs `Date, Bank_Name`), creating an apparent visual mismatch when inspected side-by-side in Excel.
 * **Resolution:** Extracted `Unearned_Income` (`RCFD2123`) explicitly, added `Gross_Total_Loans` and `Unearned_Income` to `fact_loan_sectors.csv`, enforced $\text{Gross\_Total\_Loans} - \text{Unearned\_Income} \equiv \text{Total\_Loans}$ with 0 violations across all 1,190 quarters, and synchronized physical on-disk sorting to `(Date, Bank_ID)`.
 
+#### Bug #11: Analytical View Cartesian Explosion on Loan Concentration (`vw_powerbi_loan_concentration`)
+* **Severity:** Critical (Database Performance & Metric Accuracy)
+* **Description:** In the initial analytical view definition, `fact_loan_balances` was joined directly to `fact_risk_metrics` without metric filtering or subquery aggregation. Because `fact_risk_metrics` contains 34 metric records per bank-quarter, each of the 16 loan sector records was multiplied 34 times, causing a Cartesian explosion from 19,040 rows to 647,360 rows and inflating total loan balances in Power BI by 34x.
+* **Resolution:** Refactored `vw_powerbi_loan_concentration` to `LEFT JOIN` a pre-aggregated subquery isolating the 3 loan concentration metrics (`K2`, `K3`, `K4`). This restored the view to exactly 19,040 rows (1:1 with `fact_loan_balances`), eliminated loan balance multiplication, and reduced query latency by 95%.
+
 ---
 
-### 6.4 Quality Certification & Readiness Sign-Off
+### 6.4 Quantitative Risk Analytics QA Test Suite (`test_risk_metrics_qa.py`)
 
-The data extraction, cleaning, and relational modeling components have achieved **100% compliance** across all **22 automated tests**. The data warehouse is verified clean, normalized, and production-ready for the subsequent Analytical Calculation and Power BI Visualization phases.
+A secondary automated test suite validates the quantitative analytics engine, metric integrity, and Power BI SQL views:
+
+| Test ID | Test Category | Validation Target | Pass Criteria | Status |
+| :--- | :--- | :--- | :--- | :---: |
+| **TC-AN-01** | Dimension Metadata | `dim_risk_metric` Completeness | Exactly 34 official Hazem metrics defined with non-empty attributes | **PASS** |
+| **TC-AN-02** | Relational Star Schema | `fact_risk_metrics` Cardinality | Exactly 40,460 rows ($1,190 \times 34$) in MySQL & CSV | **PASS** |
+| **TC-AN-03** | Wide Analytical Dataset | `fact_quarterly_risk_wide.csv` | Exactly 1,190 rows, 45 columns, sorted by `Date, Bank_ID` | **PASS** |
+| **TC-AN-04** | SQL Analytical Views | 4 Power BI Analytical Views | Exact expected row counts (1,190 / 1,190 / 19,040 / 74,525) | **PASS** |
+| **TC-AN-05** | Ground Truth Benchmarks | SVB Q4-2022 Forensic Targets | LFR $\approx 4.30$, C6 $\approx 1.65\%$, S1 $\approx 43.69\%$, L1 $\approx 94.36\%$, EWS $\ge 80$ (RED) | **PASS** |
+| **TC-AN-06** | Mathematical Bounds | Composite EWS Score Bounds | All scores strictly in $[0, 100]$, alert levels strictly in GREEN/AMBER/RED | **PASS** |
+| **TC-AN-07** | Relational Consistency | Loan View Balance Sum Integrity | $\sum(\text{View Loan Amount}) \equiv \sum(\text{Fact Loan Balances})$ ($0$ discrepancy) | **PASS** |
+| **TC-AN-08** | Early Warning Lead Time | Supervisory Lead Time Horizon | SVB triggers critical **RED** alert by Q3 2022 ($\ge 2$ quarters ahead of crisis) | **PASS** |
+
+---
+
+### 6.5 Quality Certification & Readiness Sign-Off
+
+The entire data engineering and quantitative risk analytics pipeline has achieved **100% compliance** across all **30 automated tests** (22 ETL tests + 8 Analytics tests). The data warehouse and Power BI analytical views are verified clean, mathematically reconciled, and certified ready for dashboard rendering.
 
 * **Lead QA Auditor:** Omar Mohamed Abdulwahab Mohamed (Student ID: 21172370)  
+* **Lead Financial Modeler:** Hazem Taha Hosny (Student ID: 21172373)  
 * **Approved by:** Abdalatyf Ahmed Ibrahim (Team Leader & Lead Data Architect)

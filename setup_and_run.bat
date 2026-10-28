@@ -64,13 +64,31 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: Optional Step 5: MySQL Loader
-:: We skip it by default unless explicitly asked or run independently, but let's just note it
-echo [5/5] Skipping MySQL load step. To load to DB, run: python src\etl\05_load_to_mysql.py
+:: Step 5: Calculate Quantitative Risk Metrics & EWS Engine
+echo [5/6] Calculating Risk Metrics and EWS Composite Scores...
+python src\analytics\06_calculate_risk_metrics.py
+if errorlevel 1 (
+    echo [ERROR] Risk metrics calculation failed.
+    exit /b 1
+)
+
+:: Step 6: Automated Quality Assurance Test Suites
+echo [6/6] Running Automated QA Test Suites...
+python -m unittest tests\test_etl_qa.py
+if errorlevel 1 (
+    echo [ERROR] ETL QA tests failed.
+    exit /b 1
+)
+python -m unittest tests\test_risk_metrics_qa.py
+if errorlevel 1 (
+    echo [ERROR] Risk metrics QA tests failed.
+    exit /b 1
+)
 
 echo.
 echo ==============================================================
-echo [SUCCESS] Entire ETL Pipeline finished successfully!
+echo [SUCCESS] Entire ETL & Analytics Pipeline finished successfully!
 echo Processed outputs are located in: data\processed\
+echo Database views and tables loaded in: Financial_Risk_EWS_db
 echo ==============================================================
 pause
