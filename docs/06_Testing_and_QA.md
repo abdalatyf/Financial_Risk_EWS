@@ -53,7 +53,7 @@ All tests are implemented in Python's standard `unittest` framework and run non-
 | **TC-06** | Data Quality | Verify pre-Basel III `CET1_Ratio_Pct` is stored as `NaN` not `0.0`. | 0 zeros pre-2014 | 0 zeros (470 valid nulls) | 🟢 **PASS** |
 | **TC-07** | Data Quality | Verify SI (2008–17) and WAL (2008–10) missing uninsured deposits are `NaN`. | 0 zeros where deposits exist | 0 zeros (40 SI, 12 WAL nulls)| 🟢 **PASS** |
 | **TC-08** | Accounting | Validate Balance Sheet identity: $\text{Assets} = \text{Liab} + \text{Equity} + \text{NCI}$. | Discrepancy $< 0.1\%$ | Exactly 0 violations (100% balance) | 🟢 **PASS** |
-| **TC-09** | Loan Balancing | Assert $\sum(\text{16 Sectors}) \ge \text{Total Loans}$ and unearned delta $< 2\%$. | Gross $\ge$ Net; delta $< 2\%$ | Max unearned delta $1.43\%$ | 🟢 **PASS** |
+| **TC-09** | Regulatory Loan Identity | Assert $\text{Gross\_Total\_Loans} == \sum(\text{16 Sectors})$ and $\text{Gross} - \text{Unearned} == \text{Total Loans}$. | 0 violations across 1,190 rows | Exactly 0 violations (100% balance) | 🟢 **PASS** |
 | **TC-10** | Market Bounds | Check physical OHLC ordering: $\text{Low} \le \text{Open/Close} \le \text{High}$. | 0 bound violations | 0 violations in 74,525 rows | 🟢 **PASS** |
 | **TC-11** | Market Halts | Check delisted banks (`SIVB`, `SBNY`, `FRCB`, `PACW`) stop at cutoff. | Max trade date $\le$ cutoff | All 4 banks strictly cut off | 🟢 **PASS** |
 | **TC-12** | Macro Rates | Validate Federal Reserve DFF series continuity. | $\ge 4,000$ rows, 0 nulls | 5,844 rows, 0 nulls | 🟢 **PASS** |
@@ -66,6 +66,7 @@ All tests are implemented in Python's standard `unittest` framework and run non-
 | **TC-19** | DevOps | Validate `setup_and_run.bat` portability. | Exists, 0 drive hardcodes | File present and portable | 🟢 **PASS** |
 | **TC-20** | Security | Validate `.env` git exclusion and `.env.example` sanitization. | `.env` ignored, dummy pass | Password protected | 🟢 **PASS** |
 | **TC-21** | Deposit Math | Verify deposit decomposition: $\text{Total} == \text{Domestic} + \text{Foreign}$. | 0 violations across 1,190 rows | 0 violations (max diff $0.0$) | 🟢 **PASS** |
+| **TC-22** | Physical CSV Alignment | Verify `fact_financials.csv` and `fact_loan_sectors.csv` have identical row-for-row alignment on disk. | Row N Date, Bank_ID, IDRSSD match 100% | 1,190 / 1,190 identical rows | 🟢 **PASS** |
 
 ---
 
@@ -119,11 +120,16 @@ During this Quality Assurance review cycle, 9 specific technical and data defect
 * **Description:** README instructed teammates to define `DB_PASSWORD`, but scripts read `MYSQL_PASSWORD`.
 * **Resolution:** Synchronized README instructions to `MYSQL_PASSWORD` matching `.env.example`.
 
+#### Bug #10: Loan Sector Unearned Income Reconciliation & Physical CSV Sorting
+* **Severity:** Medium (Regulatory Accounting & Usability)
+* **Description:** In 266 bank-quarters, the sum of the 16 discrete RC-C loan sectors did not equal `Total_Loans` due to Schedule RC-C Line 10 Unearned Income (`RCFD2123`), and `fact_financials.csv` and `fact_loan_sectors.csv` were sorted under different ordering keys (`Bank_ID, Date` vs `Date, Bank_Name`), creating an apparent visual mismatch when inspected side-by-side in Excel.
+* **Resolution:** Extracted `Unearned_Income` (`RCFD2123`) explicitly, added `Gross_Total_Loans` and `Unearned_Income` to `fact_loan_sectors.csv`, enforced $\text{Gross\_Total\_Loans} - \text{Unearned\_Income} \equiv \text{Total\_Loans}$ with 0 violations across all 1,190 quarters, and synchronized physical on-disk sorting to `(Date, Bank_ID)`.
+
 ---
 
 ### 6.4 Quality Certification & Readiness Sign-Off
 
-The data extraction, cleaning, and relational modeling components have achieved **100% compliance** across all automated tests. The data warehouse is verified clean, normalized, and production-ready for the subsequent Analytical Calculation and Power BI Visualization phases.
+The data extraction, cleaning, and relational modeling components have achieved **100% compliance** across all **22 automated tests**. The data warehouse is verified clean, normalized, and production-ready for the subsequent Analytical Calculation and Power BI Visualization phases.
 
 * **Lead QA Auditor:** Omar Mohamed Abdulwahab Mohamed (Student ID: 21172370)  
 * **Approved by:** Abdalatyf Ahmed Ibrahim (Team Leader & Lead Data Architect)

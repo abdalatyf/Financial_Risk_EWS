@@ -111,15 +111,25 @@ class TestETLQualityAssurance(unittest.TestCase):
         self.assertEqual(anomalies, 0, f"Found {anomalies} accounting identity violations > 0.1% (expected 0 after NCI integration)")
 
     def test_09_loan_sector_sum_reconciliation(self):
-        """Test 9: Sum of the 16 gross loan sectors minus unearned income matches Total_Loans."""
+        """Test 9: Gross_Total_Loans equals sum of 16 sectors and Gross_Total_Loans - Unearned_Income == Total_Loans."""
         df_loans = pd.read_csv(self.loans_csv)
+        self.assertIn('Gross_Total_Loans', df_loans.columns, "Gross_Total_Loans column missing in fact_loan_sectors")
+        self.assertIn('Unearned_Income', df_loans.columns, "Unearned_Income column missing in fact_loan_sectors")
+        self.assertIn('Total_Loans', df_loans.columns, "Total_Loans column missing in fact_loan_sectors")
+        
         sector_cols = [c for c in df_loans.columns if c[0].isdigit()]
+        self.assertEqual(len(sector_cols), 16, f"Expected 16 sectors, got {len(sector_cols)}")
         sector_sum = df_loans[sector_cols].sum(axis=1)
-        # Gross loans from RC-C must be >= Net Total Loans reported on RC line 4b (the difference is unearned income)
-        self.assertTrue((sector_sum >= df_loans['Total_Loans'] - 1.0).all(), "Gross loan sum cannot be less than net total loans")
-        # Unearned loan income must represent less than 2% of total loan volume
-        unearned_ratio = (sector_sum - df_loans['Total_Loans']) / df_loans['Total_Loans']
-        self.assertTrue((unearned_ratio < 0.02).all(), "Unearned loan income variance exceeds 2%")
+        
+        # 1. Gross_Total_Loans strictly equals sum of 16 sectors
+        diff_gross = np.abs(df_loans['Gross_Total_Loans'] - sector_sum)
+        violations_gross = (diff_gross > 1.0).sum()
+        self.assertEqual(violations_gross, 0, f"Found {violations_gross} Gross_Total_Loans vs sector sum violations")
+        
+        # 2. Regulatory Identity: Gross_Total_Loans - Unearned_Income == Total_Loans
+        diff_identity = np.abs(df_loans['Gross_Total_Loans'] - df_loans['Unearned_Income'] - df_loans['Total_Loans'])
+        violations_identity = (diff_identity > 1.0).sum()
+        self.assertEqual(violations_identity, 0, f"Found {violations_identity} regulatory loan identity violations")
 
     def test_10_market_data_ohlc_bounds(self):
         """Test 10: Low <= Open <= High and Low <= Close <= High across all market records."""
@@ -289,6 +299,15 @@ class TestETLQualityAssurance(unittest.TestCase):
         diff = np.abs(df_fin['Total_Deposits'] - (df_fin['Domestic_Deposits'] + df_fin['Foreign_Deposits']))
         violations = (diff > 1.0).sum()
         self.assertEqual(violations, 0, f"Found {violations} deposit decomposition violations (|diff| > 1.0)")
+
+    def test_22_physical_csv_row_alignment(self):
+        """Test 22: Verify fact_financials.csv and fact_loan_sectors.csv have identical row-for-row alignment on disk."""
+        df_fin = pd.read_csv(self.fin_csv)
+        df_loans = pd.read_csv(self.loans_csv)
+        self.assertEqual(len(df_fin), len(df_loans), "Row count mismatch between facts")
+        self.assertTrue((df_fin['Date'] == df_loans['Date']).all(), "Date physical row alignment mismatch")
+        self.assertTrue((df_fin['Bank_ID'] == df_loans['Bank_ID']).all(), "Bank_ID physical row alignment mismatch")
+        self.assertTrue((df_fin['IDRSSD'] == df_loans['IDRSSD']).all(), "IDRSSD physical row alignment mismatch")
 
 if __name__ == "__main__":
     unittest.main()

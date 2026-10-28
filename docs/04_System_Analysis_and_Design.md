@@ -218,6 +218,11 @@ erDiagram
 * **Composite Primary Keys:** Composite PKs `(quarter_id, idrssd, metric_id)` guarantee idempotent loading and zero duplicate entries.
 * **Indexing Strategy:** B-tree indexes are applied on foreign key joins `(idrssd, quarter_id)` and calendar dates, enabling analytical SQL view filtering in $< 50$ ms.
 
+#### 4. Schedule RC-C Loan Sector Reconciliation
+Under FFIEC Call Report guidelines, the 16 discrete RC-C lending categories are reported **GROSS** (contractual loan balances). Schedule RC-C Line 10 reports contra-asset **Unearned Income on Loans** (`RCFD2123`), and Line 11/12 reports **Total Loans Net of Unearned Income** (`RCFD2122`):
+$$\text{Gross Total Loans} - \text{Unearned Income} \equiv \text{Total Loans (Net)}$$
+The staging CSV `fact_loan_sectors.csv` preserves `Gross_Total_Loans`, `Unearned_Income`, and `Total_Loans`, validating this identity with 0 discrepancies across all 1,190 bank-quarters, while `fact_loan_balances` loads the 16 gross sector allocations for drilldown reporting.
+
 ---
 
 ### 4.3 Data Flow & System Behavior

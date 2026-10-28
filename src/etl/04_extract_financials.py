@@ -183,6 +183,9 @@ class FFIECFinancialsExtractor:
         # Format Date back to string
         df_final['Date'] = df_final['Date'].dt.strftime('%Y-%m-%d')
         
+        # Enforce consistent sorting across all processed fact tables
+        df_final = df_final.sort_values(by=["Date", "Bank_ID"]).reset_index(drop=True)
+        
         output_path = os.path.join(self.processed_dir, "fact_financials.csv")
         df_final.to_csv(output_path, index=False)
         print(f"\n[SUCCESS] Saved Core Financials to: {output_path}")

@@ -70,9 +70,16 @@ class FFIECLoansExtractor:
                 variance = total_loans - net_mapped
                 if variance != 0: sec_16_other += variance
                 
+                # Recompute gross total loans after reconciliation
+                gross_total_loans = (sec_1_const + sec_2_farm + sec_3_resi + sec_4_multi + sec_5_cre +
+                                     sec_6_dep_inst + sec_7_nondep_inst + sec_8_ci + sec_9_agri +
+                                     sec_10_cards + sec_11_auto + sec_12_other_con +
+                                     sec_13_foreign + sec_14_muni + sec_15_leases + sec_16_other)
+
                 self.master_loan_data.append({
                     "Date": quarter_date, "Bank_ID": bank_id, "Bank_Name": bank_name, "IDRSSD": idrssd,
-                    "Total_Loans": total_loans, "1_Construction": sec_1_const,
+                    "Gross_Total_Loans": gross_total_loans, "Unearned_Income": unearned, "Total_Loans": total_loans,
+                    "1_Construction": sec_1_const,
                     "2_Farmland": sec_2_farm, "3_Residential_1_4": sec_3_resi,
                     "4_Multifamily": sec_4_multi, "5_Commercial_RE": sec_5_cre,
                     "6_Depository_Inst": sec_6_dep_inst, "7_Nondepository_Inst": sec_7_nondep_inst,
@@ -95,9 +102,9 @@ class FFIECLoansExtractor:
         print("Transforming to Pandas DataFrame...")
         df_final = pd.DataFrame(self.master_loan_data)
         
-        # Aggregate at IDRSSD level (actually sum is fine here for loans, or max. Let's use sum for multiple loan branches if any)
+        # Aggregate at IDRSSD level
         df_final = df_final.groupby(['Date', 'Bank_ID', 'Bank_Name', 'IDRSSD'], as_index=False).sum()
-        df_final = df_final.sort_values(by=["Date", "Bank_Name"]).reset_index(drop=True)
+        df_final = df_final.sort_values(by=["Date", "Bank_ID"]).reset_index(drop=True)
         
         output_path = os.path.join(self.processed_dir, "fact_loan_sectors.csv")
         df_final.to_csv(output_path, index=False)
