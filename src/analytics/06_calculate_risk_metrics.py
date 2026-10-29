@@ -241,45 +241,66 @@ class RiskMetricsCalculator:
         df = df.drop(columns=['Date_dt', 'Ticker'])
 
         # -------------------------------------------------------------
-        # Pillar 8: Composite EWS Score Engine (Hazem's 6 Core Drivers)
+        # Pillar 8: Generalized Multi-Pillar Systemic EWS Score Engine
+        # Captures all 6 systemic failure vectors: Run, Duration, Liquidity, Wholesale, Credit, Market
         # -------------------------------------------------------------
-        # Piecewise linear scaling with clamping to [0, 100]
-        # L3: Liquidity Fragility (25%) [0.50 -> 0, 1.00 -> 100]
-        l3_score = np.clip((df['L3'].fillna(0.0) - 0.50) / (1.00 - 0.50) * 100.0, 0.0, 100.0)
+        # 1. Liquidity Fragility Stress (L3)
+        s_l3 = np.clip((df['L3'].fillna(0.0) - 1.0) / (3.5 - 1.0) * 100.0, 0.0, 100.0)
 
-        # C6: Adjusted Tier 1 Capital (20%) [10.0% -> 0, 4.0% -> 100]
+        # 2. Uninsured Deposit Flight Risk (L1)
+        s_l1 = np.clip((df['L1'].fillna(0.0) - 0.40) / (0.75 - 0.40) * 100.0, 0.0, 100.0)
+
+        # 3. Deposit Run Drainage Velocity (L4)
+        s_l4 = np.clip((-df['L4'].fillna(0.0) - 0.0) / (0.15 - 0.0) * 100.0, 0.0, 100.0)
+
+        # 4. Wholesale Emergency Borrowings Reliance (F1)
+        s_f1 = np.clip((df['F1'].fillna(0.0) - 0.06) / (0.22 - 0.06) * 100.0, 0.0, 100.0)
+
+        # 5. Capital Insolvency & Duration Shock (C6 & S1)
         c6_val = df['C6'].fillna(0.12)
-        c6_score = np.clip((0.10 - c6_val) / (0.10 - 0.04) * 100.0, 0.0, 100.0)
+        s_c6 = np.clip((0.10 - c6_val) / (0.10 - 0.04) * 100.0, 0.0, 100.0)
+        s_s1 = np.clip((df['S1'].fillna(0.0) - 0.15) / (0.35 - 0.15) * 100.0, 0.0, 100.0)
+        s_cap_dur = np.maximum(s_c6, s_s1)
 
-        # S1: HTM Concentration (20%) [15.0% -> 0, 35.0% -> 100]
-        s1_score = np.clip((df['S1'].fillna(0.0) - 0.15) / (0.35 - 0.15) * 100.0, 0.0, 100.0)
+        # 6. Market Equity Sentiment Crash Shock (M1)
+        s_m1 = np.clip((-df['M1'].fillna(0.0) - 0.20) / (0.50 - 0.20) * 100.0, 0.0, 100.0)
 
-        # L1: Consolidated Uninsured Deposits (15%) [50.0% -> 0, 80.0% -> 100]
-        l1_score = np.clip((df['L1'].fillna(0.0) - 0.50) / (0.80 - 0.50) * 100.0, 0.0, 100.0)
+        # 7. Commercial Real Estate Credit Risk (K3)
+        s_k3 = np.clip((df['K3'].fillna(0.0) - 0.20) / (0.45 - 0.20) * 100.0, 0.0, 100.0)
 
-        # F1: Borrowings to Assets (10%) [4.0% -> 0, 12.0% -> 100]
-        f1_score = np.clip((df['F1'].fillna(0.0) - 0.04) / (0.12 - 0.04) * 100.0, 0.0, 100.0)
+        # Multi-Pillar Systemic Baseline (Balanced institutional health profile)
+        base_score = (
+            0.20 * s_l3 +
+            0.15 * s_l1 +
+            0.15 * s_l4 +
+            0.15 * s_f1 +
+            0.15 * s_cap_dur +
+            0.10 * s_m1 +
+            0.10 * s_k3
+        )
 
-        # K3: CRE Exposure Share (10%) [20.0% -> 0, 40.0% -> 100]
-        k3_score = np.clip((df['K3'].fillna(0.0) - 0.20) / (0.40 - 0.20) * 100.0, 0.0, 100.0)
+        # Acute Terminal Stress Kicker (detects fatal single-organ failure: bank run, insolvency, or liquidity freeze)
+        acute_stress = np.maximum.reduce([s_l3, s_l4, s_f1, s_cap_dur, s_m1])
 
-        # Composite Weighted Index (0 - 100)
-        df['EWS_SCORE'] = (
-            0.25 * l3_score +
-            0.20 * c6_score +
-            0.20 * s1_score +
-            0.15 * l1_score +
-            0.10 * f1_score +
-            0.10 * k3_score
-        ).round(2)
+        # Hybrid Composite Index (50% multi-pillar balance + 50% acute failure vector)
+        hybrid_score = 0.50 * base_score + 0.50 * acute_stress
+
+        # Fatal Threshold Breaches (LFR >= 8.0, deposit drain <= -25%, wholesale borrowings >= 50%)
+        fatal_boost = (
+            np.where(df['L3'].fillna(0.0) >= 8.0, 15.0, 0.0) +
+            np.where(df['L4'].fillna(0.0) <= -0.25, 15.0, 0.0) +
+            np.where(df['F1'].fillna(0.0) >= 0.50, 10.0, 0.0)
+        )
+
+        df['EWS_SCORE'] = np.clip(hybrid_score + fatal_boost, 0.0, 100.0).round(2)
 
         # Store individual component stress scores for explainability
-        df['L3_Score'] = l3_score.round(1)
-        df['C6_Score'] = c6_score.round(1)
-        df['S1_Score'] = s1_score.round(1)
-        df['L1_Score'] = l1_score.round(1)
-        df['F1_Score'] = f1_score.round(1)
-        df['K3_Score'] = k3_score.round(1)
+        df['L3_Score'] = s_l3.round(1)
+        df['C6_Score'] = s_cap_dur.round(1)
+        df['S1_Score'] = s_s1.round(1)
+        df['L1_Score'] = s_l1.round(1)
+        df['F1_Score'] = s_f1.round(1)
+        df['K3_Score'] = s_k3.round(1)
 
         # Assign Supervisory Alert Level
         conditions = [

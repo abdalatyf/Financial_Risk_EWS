@@ -1,0 +1,14 @@
+expression pServer = "localhost" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 4733b15d-b121-4671-9bb9-11ed3763971f
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression pDatabase = "Financial_Risk_EWS_db" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: e831504b-1651-47e8-b47d-f18c32fbbb41
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

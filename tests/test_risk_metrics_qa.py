@@ -137,5 +137,33 @@ class TestRiskMetricsAnalytics(unittest.TestCase):
         self.assertEqual(svb_q3_2022["Alert_Level"], "RED",
             f"EWS failed early warning criterion: SVB in 2022-Q3 was {svb_q3_2022['Alert_Level']}")
 
+    def test_09_general_systemic_crisis_tier_separation(self):
+        """TC-AN-09: Verify Q4-2022 tier separation: 4 Casualties RED, 5 Survivors AMBER, Mega G-SIBs GREEN."""
+        q4 = self.df_wide[self.df_wide["quarter_id"] == "2022-Q4"].set_index("Bank_ID")
+        
+        # 1. All 4 Crisis Casualties (Tier 1) MUST be RED (Score >= 80)
+        casualties = ["SVB", "SBNY", "FRC", "SI"]
+        for b in casualties:
+            score = q4.loc[b, "EWS_SCORE"]
+            alert = q4.loc[b, "Alert_Level"]
+            self.assertEqual(alert, "RED", f"Casualty {b} must be RED in Q4-2022 (got {alert}, score={score})")
+            self.assertGreaterEqual(score, 80.0, f"Casualty {b} score must be >= 80.0 (got {score})")
+
+        # 2. All 5 High-Stress Survivors (Tier 2) MUST be AMBER (60 <= Score < 80)
+        survivors = ["WAL", "PACW", "CMA", "ZION", "NYCB"]
+        for b in survivors:
+            score = q4.loc[b, "EWS_SCORE"]
+            alert = q4.loc[b, "Alert_Level"]
+            self.assertEqual(alert, "AMBER", f"Survivor {b} must be AMBER in Q4-2022 (got {alert}, score={score})")
+            self.assertTrue(60.0 <= score < 80.0, f"Survivor {b} score must be in [60, 80) (got {score})")
+
+        # 3. All 5 Mega G-SIBs (Tier 4) MUST be GREEN (Score < 60)
+        gsibs = ["JPM", "BAC", "WFC", "PNC", "USB"]
+        for b in gsibs:
+            score = q4.loc[b, "EWS_SCORE"]
+            alert = q4.loc[b, "Alert_Level"]
+            self.assertEqual(alert, "GREEN", f"G-SIB {b} must be GREEN in Q4-2022 (got {alert}, score={score})")
+            self.assertLess(score, 60.0, f"G-SIB {b} score must be < 60.0 (got {score})")
+
 if __name__ == "__main__":
     unittest.main()

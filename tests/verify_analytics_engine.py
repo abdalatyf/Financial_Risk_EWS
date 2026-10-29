@@ -78,10 +78,11 @@ def main():
               f"S1: {r['htm_concentration_ratio']*100:>5.2f}% | L1: {r['uninsured_deposit_ratio']*100:>5.2f}% | "
               f"F1: {r['borrowings_to_assets']*100:>5.2f}%")
 
-    # 4. Compare Casualties vs G-SIBs in Q4-2022
-    print("\n--- Cross-Tier Benchmark in Q4-2022 (Crisis Casualties vs Mega G-SIBs) ---")
+    # 4. Compare All 20 Banks Across 4 Tiers in Q4-2022
+    print("\n--- Complete 20-Bank Surveillance Panel in Q4-2022 ---")
     cursor.execute("""
         SELECT 
+            tier,
             tier_label,
             bank_id,
             ews_score,
@@ -91,13 +92,17 @@ def main():
             htm_concentration_ratio,
             uninsured_deposit_ratio
         FROM vw_powerbi_executive_summary
-        WHERE quarter_id = '2022-Q4' AND tier IN (1, 4)
+        WHERE quarter_id = '2022-Q4'
         ORDER BY tier, ews_score DESC;
     """)
     tier_rows = cursor.fetchall()
+    current_tier = None
     for r in tier_rows:
-        print(f"  [{r['tier_label']:<16}] {r['bank_id']:<4} | Score: {r['ews_score']:>5.1f} | Alert: {r['alert_level']:<5} | "
-              f"LFR: {r['liquidity_fragility_ratio']:>4.2f} | C6: {r['tier1_after_htm_loss']*100:>5.2f}% | "
+        if r['tier'] != current_tier:
+            current_tier = r['tier']
+            print(f"\n  [Tier {current_tier}: {r['tier_label']}]")
+        print(f"    {r['bank_id']:<4} | Score: {r['ews_score']:>5.1f} | Alert: {r['alert_level']:<5} | "
+              f"LFR: {r['liquidity_fragility_ratio']:>5.2f} | C6: {r['tier1_after_htm_loss']*100:>5.2f}% | "
               f"S1: {r['htm_concentration_ratio']*100:>5.2f}% | L1: {r['uninsured_deposit_ratio']*100:>5.2f}%")
 
     conn.close()

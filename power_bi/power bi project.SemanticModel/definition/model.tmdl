@@ -11,5 +11,7 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
+annotation PBI_QueryOrder = ["pServer","pDatabase"]
+
 ref cultureInfo en-US
 
