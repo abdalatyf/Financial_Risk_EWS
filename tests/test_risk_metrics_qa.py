@@ -117,7 +117,7 @@ class TestRiskMetricsAnalytics(unittest.TestCase):
         self.assertTrue((valid_scores <= 100.0).all(), "Found EWS scores exceeding 100.0")
         
         valid_alerts = set(self.df_wide["Alert_Level"].unique())
-        self.assertTrue(valid_alerts.issubset({"GREEN", "AMBER", "RED"}), f"Invalid alert levels: {valid_alerts}")
+        self.assertTrue(valid_alerts.issubset({"GREEN", "YELLOW", "AMBER", "RED"}), f"Invalid alert levels: {valid_alerts}")
 
     def test_07_loan_concentration_view_integrity(self):
         """TC-AN-07: Verify loan sum in view matches fact table exactly (no cartesian duplication)."""
@@ -138,7 +138,7 @@ class TestRiskMetricsAnalytics(unittest.TestCase):
             f"EWS failed early warning criterion: SVB in 2022-Q3 was {svb_q3_2022['Alert_Level']}")
 
     def test_09_general_systemic_crisis_tier_separation(self):
-        """TC-AN-09: Verify Q4-2022 tier separation: 4 Casualties RED, 5 Survivors AMBER, Mega G-SIBs GREEN."""
+        """TC-AN-09: Verify Q4-2022 tier separation: 4 Casualties RED, 5 Survivors AMBER, Mega G-SIBs Safe/Watchlist (<60)."""
         q4 = self.df_wide[self.df_wide["quarter_id"] == "2022-Q4"].set_index("Bank_ID")
         
         # 1. All 4 Crisis Casualties (Tier 1) MUST be RED (Score >= 80)
@@ -157,12 +157,12 @@ class TestRiskMetricsAnalytics(unittest.TestCase):
             self.assertEqual(alert, "AMBER", f"Survivor {b} must be AMBER in Q4-2022 (got {alert}, score={score})")
             self.assertTrue(60.0 <= score < 80.0, f"Survivor {b} score must be in [60, 80) (got {score})")
 
-        # 3. All 5 Mega G-SIBs (Tier 4) MUST be GREEN (Score < 60)
+        # 3. All 5 Mega G-SIBs (Tier 4) MUST be Safe/Watchlist GREEN or YELLOW (Score < 60)
         gsibs = ["JPM", "BAC", "WFC", "PNC", "USB"]
         for b in gsibs:
             score = q4.loc[b, "EWS_SCORE"]
             alert = q4.loc[b, "Alert_Level"]
-            self.assertEqual(alert, "GREEN", f"G-SIB {b} must be GREEN in Q4-2022 (got {alert}, score={score})")
+            self.assertIn(alert, ["GREEN", "YELLOW"], f"G-SIB {b} must be GREEN or YELLOW in Q4-2022 (got {alert}, score={score})")
             self.assertLess(score, 60.0, f"G-SIB {b} score must be < 60.0 (got {score})")
 
 if __name__ == "__main__":

@@ -408,10 +408,11 @@ The executive dashboard suite was designed in **Figma** adhering to executive co
   * *Tier 2 (High-Stress Survivors):* Deep Amber (`#ED6C02`)
   * *Tier 3 (Regional Peers):* Slate Navy (`#0288D1`)
   * *Tier 4 (Mega G-SIBs):* Forest Green (`#2E7D32`)
-* **Alert States (Traffic Light System):**
-  * 🟢 **Normal / Low Risk:** Composite Score $< 60$ (`#2E7D32`)
-  * 🟡 **Elevated / Moderate Risk:** Composite Score $60 - 80$ (`#F57C00`)
-  * 🔴 **Critical / High Warning:** Composite Score $\ge 80$ (`#D32F2F`)
+* **Alert States (4-Tier Supervisory Early Warning System):**
+  * 🟢 **Sound / Low Risk (GREEN):** Composite Score $< 45.0$ (`#2E7D32`)
+  * 🟡 **Watchlist / Moderate Risk (YELLOW):** Composite Score $45.0 - 59.9$ (`#FBC02D`)
+  * 🟠 **Elevated Concern / High Stress (AMBER):** Composite Score $60.0 - 79.9$ (`#ED6C02`)
+  * 🔴 **Critical Danger / Insolvency Risk (RED):** Composite Score $\ge 80.0$ (`#D32F2F`)
 * **Typography:** Segoe UI (Headers: 20pt Bold; KPI Callouts: 28pt Bold; Body: 11pt Regular).
 * **Accessibility & Citations:** High-contrast text compliance (WCAG AA), tooltips providing metric definitions, and mandatory source attribution footers on all canvas pages.
 

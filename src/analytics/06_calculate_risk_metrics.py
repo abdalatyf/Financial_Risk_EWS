@@ -302,13 +302,14 @@ class RiskMetricsCalculator:
         df['F1_Score'] = s_f1.round(1)
         df['K3_Score'] = s_k3.round(1)
 
-        # Assign Supervisory Alert Level
+        # Assign Supervisory Alert Level (4-tier scale: GREEN, YELLOW, AMBER, RED)
         conditions = [
-            (df['EWS_SCORE'] < 60.0),
+            (df['EWS_SCORE'] < 45.0),
+            (df['EWS_SCORE'] >= 45.0) & (df['EWS_SCORE'] < 60.0),
             (df['EWS_SCORE'] >= 60.0) & (df['EWS_SCORE'] < 80.0),
             (df['EWS_SCORE'] >= 80.0)
         ]
-        choices = ['GREEN', 'AMBER', 'RED']
+        choices = ['GREEN', 'YELLOW', 'AMBER', 'RED']
         df['Alert_Level'] = np.select(conditions, choices, default='GREEN')
 
         # Re-sort consistently by Date and Bank_ID
@@ -453,6 +454,7 @@ class RiskMetricsCalculator:
                 CASE 
                     WHEN MAX(CASE WHEN m.metric_code = 'EWS_SCORE' THEN f.metric_value END) >= 80.0 THEN 'RED'
                     WHEN MAX(CASE WHEN m.metric_code = 'EWS_SCORE' THEN f.metric_value END) >= 60.0 THEN 'AMBER'
+                    WHEN MAX(CASE WHEN m.metric_code = 'EWS_SCORE' THEN f.metric_value END) >= 45.0 THEN 'YELLOW'
                     ELSE 'GREEN'
                 END AS alert_level,
                 MAX(CASE WHEN m.metric_code = 'L3' THEN f.metric_value END) AS liquidity_fragility_ratio,

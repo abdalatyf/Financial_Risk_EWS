@@ -143,15 +143,16 @@ A secondary automated test suite validates the quantitative analytics engine, me
 | **TC-AN-03** | Wide Analytical Dataset | `fact_quarterly_risk_wide.csv` | Exactly 1,190 rows, 45 columns, sorted by `Date, Bank_ID` | **PASS** |
 | **TC-AN-04** | SQL Analytical Views | 4 Power BI Analytical Views | Exact expected row counts (1,190 / 1,190 / 19,040 / 74,525) | **PASS** |
 | **TC-AN-05** | Ground Truth Benchmarks | SVB Q4-2022 Forensic Targets | LFR $\approx 4.30$, C6 $\approx 1.65\%$, S1 $\approx 43.69\%$, L1 $\approx 94.36\%$, EWS $\ge 80$ (RED) | **PASS** |
-| **TC-AN-06** | Mathematical Bounds | Composite EWS Score Bounds | All scores strictly in $[0, 100]$, alert levels strictly in GREEN/AMBER/RED | **PASS** |
+| **TC-AN-06** | Mathematical Bounds | Composite EWS Score Bounds | All scores strictly in $[0, 100]$, alert levels strictly in GREEN/YELLOW/AMBER/RED | **PASS** |
 | **TC-AN-07** | Relational Consistency | Loan View Balance Sum Integrity | $\sum(\text{View Loan Amount}) \equiv \sum(\text{Fact Loan Balances})$ ($0$ discrepancy) | **PASS** |
 | **TC-AN-08** | Early Warning Lead Time | Supervisory Lead Time Horizon | SVB triggers critical **RED** alert by Q3 2022 ($\ge 2$ quarters ahead of crisis) | **PASS** |
+| **TC-AN-09** | Systemic Generalization | 2022-Q4 Tier Separation Benchmark | 4 Casualties RED ($\ge 80$), 5 Survivors AMBER ($60-80$), G-SIBs Safe/Watchlist ($<60$) | **PASS** |
 
 ---
 
 ### 6.5 Quality Certification & Readiness Sign-Off
 
-The entire data engineering and quantitative risk analytics pipeline has achieved **100% compliance** across all **30 automated tests** (22 ETL tests + 8 Analytics tests). The data warehouse and Power BI analytical views are verified clean, mathematically reconciled, and certified ready for dashboard rendering.
+The entire data engineering and quantitative risk analytics pipeline has achieved **100% compliance** across all **31 automated tests** (22 ETL tests + 9 Analytics tests). The data warehouse and Power BI analytical views are verified clean, mathematically reconciled, and certified ready for dashboard rendering.
 
 * **Lead QA Auditor:** Abdalatyf Ahmed Ibrahim (Team Leader, Lead Data Architect & Lead QA Auditor)  
 * **Lead Financial Modeler:** Hazem Taha Hosny (Student ID: 21154651)  
