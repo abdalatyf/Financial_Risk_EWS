@@ -7,18 +7,18 @@
 
 ---
 
-## 1. Team Ownership & Feature Branch Matrix
+## 1. Team Branch Matrix
 
-To prevent merge conflicts in Power BI `.pbip` files, each developer owns a dedicated feature branch and independent report page range:
+Each team member works on their own personal branch. Task/page scope is assigned separately by the Team Leader.
 
-| Developer | Team Role | Assigned Scope | Dedicated Personal Branch |
-| :--- | :--- | :--- | :--- |
-| **Abdalatyf Ahmed Ibrahim** | Team Leader & QA Auditor | Integration, Code Review, Final Merge | `main` |
-| **Hazem Taha Hosny** | Financial & Quantitative Lead | Shared DAX Measures (`_Measures.tmdl`) & Risk Calculations | `feature/hazem` |
-| **Mohamed Kamel Farouk** | Power BI Developer 1 | **Pages 1–3:** Executive Heatmap, Funding/Run Risk, Securities Shock | `feature/mohamed-kamel` |
-| **Omar Mohamed Abdulwahab** | Power BI Developer 2 | **Pages 4–6:** Capital Adequacy, Profitability, CRE Concentration | `feature/omar-abdulwahab` |
-| **Ibrahim Mosleh Ibrahim** | Power BI Developer 3 | **Pages 7–9:** Market Signals, Backtest Model, Single-Bank Deep Dive | `feature/ibrahim-mosleh` |
-| **Mohamed Lotfy Makram** | Lead UI/UX Designer | Storyboard & Figma Visual Assets (`EWS_UI-UX.pptx`) | `feature/mohamed-lotfy` |
+| Team Member | Personal Branch |
+| :--- | :--- |
+| **Abdalatyf Ahmed Ibrahim** (Team Leader) | `main` |
+| **Hazem Taha Hosny** | `feature/hazem` |
+| **Mohamed Kamel Farouk** | `feature/mohamed-kamel` |
+| **Omar Mohamed Abdulwahab** | `feature/omar-abdulwahab` |
+| **Ibrahim Mosleh Ibrahim** | `feature/ibrahim-mosleh` |
+| **Mohamed Lotfy Makram** | `feature/mohamed-lotfy` |
 
 ---
 
@@ -33,7 +33,7 @@ To prevent merge conflicts in Power BI `.pbip` files, each developer owns a dedi
 > ### 🛡️ RULE 2: Page-Level Isolation (Zero Merge Conflicts)
 > In Power BI Developer Mode (`.pbip`), each report page has a dedicated folder under:  
 > `power_bi/power bi project.Report/definition/pages/<page_id>/`  
-> Developers must **only create and edit visuals on their assigned pages**. Never edit someone else's page simultaneously!
+> Two people must **never edit the same page at the same time**. Coordinate with the Team Leader before touching a page someone else is working on.
 
 > [!TIP]
 > ### 📐 RULE 3: Centralized DAX Measures Table
