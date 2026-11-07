@@ -33,7 +33,7 @@ echo Running the ETL Pipeline...
 echo ==============================================================
 
 :: Step 1: Unzip FFIEC Data
-echo [1/5] Unzipping FFIEC Data (May take a few minutes)...
+echo [1/7] Unzipping FFIEC Data (May take a few minutes)...
 python src\etl\01b_unzip_ffiec.py
 if errorlevel 1 (
     echo [ERROR] Extraction failed.
@@ -41,7 +41,7 @@ if errorlevel 1 (
 )
 
 :: Step 2: Extract FFIEC Loan Sectors
-echo [2/5] Extracting Loan Sectors...
+echo [2/7] Extracting Loan Sectors...
 python src\etl\02_extract_transform_ffiec.py
 if errorlevel 1 (
     echo [ERROR] Loan extraction failed.
@@ -49,7 +49,7 @@ if errorlevel 1 (
 )
 
 :: Step 3: Transform Market Data
-echo [3/5] Transforming Market Data...
+echo [3/7] Transforming Market Data...
 python src\etl\03_transform_market_data.py
 if errorlevel 1 (
     echo [ERROR] Market data transformation failed.
@@ -57,23 +57,31 @@ if errorlevel 1 (
 )
 
 :: Step 4: Extract Financials
-echo [4/5] Extracting Financials...
+echo [4/7] Extracting Financials...
 python src\etl\04_extract_financials.py
 if errorlevel 1 (
     echo [ERROR] Financials extraction failed.
     exit /b 1
 )
 
-:: Step 5: Calculate Quantitative Risk Metrics & EWS Engine
-echo [5/6] Calculating Risk Metrics and EWS Composite Scores...
+:: Step 5: Build MySQL Star Schema and load processed data
+echo [5/7] Creating MySQL database and loading Star Schema...
+python src\etl\05_load_to_mysql.py --rebuild
+if errorlevel 1 (
+    echo [ERROR] MySQL load failed. Check MySQL is running and .env credentials are correct.
+    exit /b 1
+)
+
+:: Step 6: Calculate Quantitative Risk Metrics & EWS Engine
+echo [6/7] Calculating Risk Metrics and EWS Composite Scores...
 python src\analytics\06_calculate_risk_metrics.py
 if errorlevel 1 (
     echo [ERROR] Risk metrics calculation failed.
     exit /b 1
 )
 
-:: Step 6: Automated Quality Assurance Test Suites
-echo [6/6] Running Automated QA Test Suites...
+:: Step 7: Automated Quality Assurance Test Suites
+echo [7/7] Running Automated QA Test Suites...
 python -m unittest tests\test_etl_qa.py
 if errorlevel 1 (
     echo [ERROR] ETL QA tests failed.
