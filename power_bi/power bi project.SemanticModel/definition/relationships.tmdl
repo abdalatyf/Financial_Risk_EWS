@@ -1,0 +1,38 @@
+relationship 323c277e-28f3-4f2f-9415-3f62ce135782
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'financial_risk_ews_db vw_powerbi_market_daily'.date
+	toColumn: LocalDateTable_1758cd58-9f72-4e8a-bac1-4511678c676b.Date
+
+relationship 5fb5f84d-e626-4e94-9a17-b0c3088a3344
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'financial_risk_ews_db dim_quarter'.quarter_end_date
+	toColumn: LocalDateTable_2284f28b-64f3-4d3b-81d4-0db006947591.Date
+
+relationship AutoDetected_8e488c30-db27-4be7-b129-490f714e99bd
+	fromColumn: 'financial_risk_ews_db vw_powerbi_bank_risk_wide'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank'.bank_id
+
+relationship AutoDetected_2a9a4e2f-41d3-49f6-a37f-b48fbdd0ea70
+	fromColumn: 'financial_risk_ews_db vw_powerbi_executive_summary'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank'.bank_id
+
+relationship AutoDetected_8549932e-d44b-4c43-a969-f07b955e1d78
+	fromColumn: 'financial_risk_ews_db vw_powerbi_loan_concentration'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank'.bank_id
+
+relationship AutoDetected_3c3ff05d-8ad5-4124-ba44-8d6a533aec61
+	fromColumn: 'financial_risk_ews_db vw_powerbi_market_daily'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank'.bank_id
+
+relationship AutoDetected_148bec4b-7e57-408b-9f83-de82ad7d1eb0
+	fromColumn: 'financial_risk_ews_db vw_powerbi_bank_risk_wide'.quarter_id
+	toColumn: 'financial_risk_ews_db dim_quarter'.quarter_id
+
+relationship AutoDetected_7614b6fb-bd3c-437b-94e9-35032fb0f786
+	fromColumn: 'financial_risk_ews_db vw_powerbi_executive_summary'.quarter_id
+	toColumn: 'financial_risk_ews_db dim_quarter'.quarter_id
+
+relationship AutoDetected_39fab3b5-7934-47ab-b9d7-3c27c1bb1e80
+	fromColumn: 'financial_risk_ews_db vw_powerbi_loan_concentration'.quarter_id
+	toColumn: 'financial_risk_ews_db dim_quarter'.quarter_id
+

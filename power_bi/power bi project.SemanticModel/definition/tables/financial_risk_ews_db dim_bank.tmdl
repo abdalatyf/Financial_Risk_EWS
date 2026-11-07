@@ -1,0 +1,62 @@
+table 'financial_risk_ews_db dim_bank'
+	lineageTag: 81e3f648-78d5-403e-a1c7-5e6a1023e329
+
+	column idrssd
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c2a464e-cefe-4038-8655-0f62634c1ab8
+		summarizeBy: sum
+		sourceColumn: idrssd
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticker
+		dataType: string
+		lineageTag: 6d89af4d-ea57-4dcd-9bf2-2c1d235e5a53
+		summarizeBy: none
+		sourceColumn: ticker
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_id
+		dataType: string
+		lineageTag: f0ab6ae8-ef34-497c-97a7-64b509d3d312
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_name
+		dataType: string
+		lineageTag: 6fc0495c-b31a-46b1-b816-fdff5dae3445
+		summarizeBy: none
+		sourceColumn: bank_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier
+		dataType: int64
+		formatString: 0
+		lineageTag: 44c7567d-4a59-4e1a-b766-1bfa7b97b377
+		summarizeBy: sum
+		sourceColumn: tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier_label
+		dataType: string
+		lineageTag: cac9f619-aefa-4793-89d1-3449e0777390
+		summarizeBy: none
+		sourceColumn: tier_label
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'financial_risk_ews_db dim_bank' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database(pServer, pDatabase, [ReturnSingleDatabase=true]),
+				    financial_risk_ews_db_dim_bank = Source{[Schema="financial_risk_ews_db",Item="dim_bank"]}[Data]
+				in
+				    financial_risk_ews_db_dim_bank
+

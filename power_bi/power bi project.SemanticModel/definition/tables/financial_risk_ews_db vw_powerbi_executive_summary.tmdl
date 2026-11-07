@@ -1,0 +1,157 @@
+table 'financial_risk_ews_db vw_powerbi_executive_summary'
+	lineageTag: fdb9f5cf-e4e4-441b-8792-605d6170bc48
+
+	column bank_id
+		dataType: string
+		lineageTag: 1c3ff35a-1cc4-46d6-a973-1d4a22b2479f
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_name
+		dataType: string
+		lineageTag: 926609f5-621b-4234-a299-5355198716eb
+		summarizeBy: none
+		sourceColumn: bank_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier
+		dataType: int64
+		formatString: 0
+		lineageTag: f571e068-580e-46cf-969b-1461cccb88d2
+		summarizeBy: sum
+		sourceColumn: tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier_label
+		dataType: string
+		lineageTag: 4dbbeceb-c697-475d-878f-c9ae5acec1da
+		summarizeBy: none
+		sourceColumn: tier_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_id
+		dataType: string
+		lineageTag: 730da67b-b338-4847-b4ae-246d4dde13ef
+		summarizeBy: none
+		sourceColumn: quarter_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: c57edf50-3235-4854-806d-145494777a01
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c07c25f-65b6-40b9-8a03-a4cc9be28627
+		summarizeBy: sum
+		sourceColumn: quarter_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column era
+		dataType: string
+		lineageTag: 61fe675a-2b41-4cd4-b5b1-6e44c86884bb
+		summarizeBy: none
+		sourceColumn: era
+
+		annotation SummarizationSetBy = Automatic
+
+	column ews_score
+		dataType: double
+		lineageTag: ba34cf43-0e66-456b-9dbe-682144bc3c67
+		summarizeBy: sum
+		sourceColumn: ews_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column alert_level
+		dataType: string
+		lineageTag: 20ba2a15-d7b7-4b38-959c-a65049141e2f
+		summarizeBy: none
+		sourceColumn: alert_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column liquidity_fragility_ratio
+		dataType: double
+		lineageTag: 3c75c24e-c205-4784-b831-1c169912747c
+		summarizeBy: sum
+		sourceColumn: liquidity_fragility_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tier1_after_htm_loss
+		dataType: double
+		lineageTag: 26c8541c-d397-4cb9-929f-8574b5d43997
+		summarizeBy: sum
+		sourceColumn: tier1_after_htm_loss
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column htm_concentration_ratio
+		dataType: double
+		lineageTag: c732543f-d9ac-4f22-b1f8-85076a3ee6b3
+		summarizeBy: sum
+		sourceColumn: htm_concentration_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column uninsured_deposit_ratio
+		dataType: double
+		lineageTag: 849cdfad-1e42-40ea-a891-76c71c9287e3
+		summarizeBy: sum
+		sourceColumn: uninsured_deposit_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column borrowings_to_assets
+		dataType: double
+		lineageTag: 590b7e00-4eb0-45e6-a24c-7397caee7d44
+		summarizeBy: sum
+		sourceColumn: borrowings_to_assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cre_share
+		dataType: double
+		lineageTag: 034ff5ea-36e0-4113-9526-ed8ed602c008
+		summarizeBy: sum
+		sourceColumn: cre_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'financial_risk_ews_db vw_powerbi_executive_summary' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database(pServer, pDatabase, [ReturnSingleDatabase=true]),
+				    financial_risk_ews_db_vw_powerbi_executive_summary = Source{[Schema="financial_risk_ews_db",Item="vw_powerbi_executive_summary"]}[Data]
+				in
+				    financial_risk_ews_db_vw_powerbi_executive_summary
+

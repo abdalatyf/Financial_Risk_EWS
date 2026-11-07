@@ -1,0 +1,423 @@
+table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
+	lineageTag: 97cafece-1d99-47e8-afdc-9f5936167a55
+
+	column bank_id
+		dataType: string
+		lineageTag: b4a383cb-960a-4ff8-92b3-43517277ab0d
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_name
+		dataType: string
+		lineageTag: 5fab6de1-2944-4f8c-aa70-210230ff1071
+		summarizeBy: none
+		sourceColumn: bank_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier
+		dataType: int64
+		formatString: 0
+		lineageTag: fbe04336-af67-459c-9d7d-fd6c02d646f6
+		summarizeBy: sum
+		sourceColumn: tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier_label
+		dataType: string
+		lineageTag: 47d015f8-24ca-483b-a18e-71dc73710942
+		summarizeBy: none
+		sourceColumn: tier_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_id
+		dataType: string
+		lineageTag: f86b157f-3d7a-4835-aae5-294824139032
+		summarizeBy: none
+		sourceColumn: quarter_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: c3fb5dcc-5eb2-4048-96fa-f21863889217
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c7d5e2d-cf8e-4d68-a623-56ee43a90fd9
+		summarizeBy: sum
+		sourceColumn: quarter_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column era
+		dataType: string
+		lineageTag: 48455f00-48c0-464c-bc90-293997e6e1e9
+		summarizeBy: none
+		sourceColumn: era
+
+		annotation SummarizationSetBy = Automatic
+
+	column C1_CET1_Ratio
+		dataType: double
+		lineageTag: 8fd13c98-d611-4861-95f0-db8988da9a39
+		summarizeBy: sum
+		sourceColumn: C1_CET1_Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column C2_Tier1_Ratio
+		dataType: double
+		lineageTag: f73b8e75-9ba2-4a44-acb6-59f37ecd8e2c
+		summarizeBy: sum
+		sourceColumn: C2_Tier1_Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column C3_Equity_to_Assets
+		dataType: double
+		lineageTag: e7f44a81-e673-4d61-b0e2-9ac2c3ec9605
+		summarizeBy: sum
+		sourceColumn: C3_Equity_to_Assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column C4_HTM_Loss_to_Equity
+		dataType: double
+		lineageTag: 75881033-7bd3-4043-b696-5a8d7e7a7f9f
+		summarizeBy: sum
+		sourceColumn: C4_HTM_Loss_to_Equity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column C5_Total_Sec_Loss_to_Equity
+		dataType: double
+		lineageTag: e2c0480e-f46f-4aae-bc98-54a5ef6e9c63
+		summarizeBy: sum
+		sourceColumn: C5_Total_Sec_Loss_to_Equity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column C6_Tier1_after_HTM_Loss
+		dataType: double
+		lineageTag: 10cc9b57-6af2-4d6d-bb67-d36aded5b5ca
+		summarizeBy: sum
+		sourceColumn: C6_Tier1_after_HTM_Loss
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column C7_Sec_Loss_to_RWA
+		dataType: double
+		lineageTag: 6aa85b1e-5650-47e3-8e7f-c0e28e266fb5
+		summarizeBy: sum
+		sourceColumn: C7_Sec_Loss_to_RWA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L1_Consolidated_Uninsured_Share
+		dataType: double
+		lineageTag: 3af6fb6c-cdff-48b0-b81a-f2099b06a53d
+		summarizeBy: sum
+		sourceColumn: L1_Consolidated_Uninsured_Share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L1a_Domestic_Uninsured_Share
+		dataType: double
+		lineageTag: 093d6fd3-f275-452b-8c93-e69aa253fcd7
+		summarizeBy: sum
+		sourceColumn: L1a_Domestic_Uninsured_Share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L1b_Foreign_Deposit_Share
+		dataType: double
+		lineageTag: a62e23c7-4376-4abe-a1e2-30a543378c0a
+		summarizeBy: sum
+		sourceColumn: L1b_Foreign_Deposit_Share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L2_Liquid_Assets_to_Assets
+		dataType: double
+		lineageTag: e783a48f-3873-45d2-83b3-16dd7181ec00
+		summarizeBy: sum
+		sourceColumn: L2_Liquid_Assets_to_Assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L3_Liquidity_Fragility_Ratio
+		dataType: double
+		lineageTag: ffb67a33-ab84-49b9-8525-42d037b20741
+		summarizeBy: sum
+		sourceColumn: L3_Liquidity_Fragility_Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L4_Deposit_Growth_YoY
+		dataType: double
+		lineageTag: fcffe010-2313-4d98-a23d-8607cf6505ab
+		summarizeBy: sum
+		sourceColumn: L4_Deposit_Growth_YoY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L5_Noninterest_Bearing_Share
+		dataType: double
+		lineageTag: 321522de-d5f1-4c16-bbdd-75acf51b12f7
+		summarizeBy: sum
+		sourceColumn: L5_Noninterest_Bearing_Share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column L6_Loan_to_Deposit_Ratio
+		dataType: double
+		lineageTag: 1895edb2-a47e-4213-b5b0-fe341dedd75e
+		summarizeBy: sum
+		sourceColumn: L6_Loan_to_Deposit_Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column F1_Borrowings_to_Assets
+		dataType: double
+		lineageTag: 8a196d23-df82-41e5-8620-bc6a5b460c41
+		summarizeBy: sum
+		sourceColumn: F1_Borrowings_to_Assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column F1a_ST_Borrowings_to_Assets
+		dataType: double
+		lineageTag: 5099df25-57ec-4e6d-82c1-30ec32f3ccd1
+		summarizeBy: sum
+		sourceColumn: F1a_ST_Borrowings_to_Assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column F1b_FHLB_Advances_to_Assets
+		dataType: double
+		lineageTag: d4c4c2b9-bb33-44fe-96dc-91612350cd07
+		summarizeBy: sum
+		sourceColumn: F1b_FHLB_Advances_to_Assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column S1_HTM_Concentration
+		dataType: double
+		lineageTag: bb1e561b-4705-427a-8047-9ee4c31e6053
+		summarizeBy: sum
+		sourceColumn: S1_HTM_Concentration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column S2_HTM_Loss_to_Assets
+		dataType: double
+		lineageTag: 09363a9d-ed01-4024-987c-b6f54317aec8
+		summarizeBy: sum
+		sourceColumn: S2_HTM_Loss_to_Assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column S3_HTM_Fair_Value_Decline
+		dataType: double
+		lineageTag: 2b23da1f-1486-46f8-82ea-28d6b3fb2328
+		summarizeBy: sum
+		sourceColumn: S3_HTM_Fair_Value_Decline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column S4_Total_Securities_Share
+		dataType: double
+		lineageTag: c5b4eb06-1953-4ca3-92d5-d06da4791821
+		summarizeBy: sum
+		sourceColumn: S4_Total_Securities_Share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column S5_AFS_Unrealized_Gain_Loss
+		dataType: double
+		lineageTag: 12728b98-05f7-4162-a663-54bc644cd589
+		summarizeBy: sum
+		sourceColumn: S5_AFS_Unrealized_Gain_Loss
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column K2_CI_Share
+		dataType: double
+		lineageTag: 0ac3fd6d-cd93-4ee2-96a8-aa57d8171557
+		summarizeBy: sum
+		sourceColumn: K2_CI_Share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column K3_CRE_Share
+		dataType: double
+		lineageTag: e122d670-1b62-4a10-a9d7-5800d9bfec64
+		summarizeBy: sum
+		sourceColumn: K3_CRE_Share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column K4_Loan_HHI
+		dataType: double
+		lineageTag: 58d5d918-5a74-4d4d-843b-b698be37b87a
+		summarizeBy: sum
+		sourceColumn: K4_Loan_HHI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P1_ROA_Annualized
+		dataType: double
+		lineageTag: 4c94c54a-b38a-4e57-ba77-4438a7c0915f
+		summarizeBy: sum
+		sourceColumn: P1_ROA_Annualized
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P2_ROE_Annualized
+		dataType: double
+		lineageTag: 3219bb40-477b-4ba7-80c1-0af9d1d16358
+		summarizeBy: sum
+		sourceColumn: P2_ROE_Annualized
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P3_NII_Growth_YoY
+		dataType: double
+		lineageTag: 119fe0a0-e4ad-4735-ae56-549573e97be0
+		summarizeBy: sum
+		sourceColumn: P3_NII_Growth_YoY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column P4_NII_to_Assets
+		dataType: double
+		lineageTag: b09f521d-bf64-408e-b23e-a191866d8c25
+		summarizeBy: sum
+		sourceColumn: P4_NII_to_Assets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column M1_Stock_Drawdown
+		dataType: double
+		lineageTag: 2105dd0b-aa55-4acf-ac6e-b1ff18d2b47a
+		summarizeBy: sum
+		sourceColumn: M1_Stock_Drawdown
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column M2_Stock_Volatility_60d
+		dataType: double
+		lineageTag: 726c17f4-c965-4ff0-b1fd-df2b11f2c220
+		summarizeBy: sum
+		sourceColumn: M2_Stock_Volatility_60d
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column M3_Fed_Rate_Change_YoY
+		dataType: double
+		lineageTag: e097ccc1-967a-4df4-99aa-498f230baf87
+		summarizeBy: sum
+		sourceColumn: M3_Fed_Rate_Change_YoY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EWS_Composite_Score
+		dataType: double
+		lineageTag: 0b8a4a4f-880c-4825-ae0a-71ccdbd3bad9
+		summarizeBy: sum
+		sourceColumn: EWS_Composite_Score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'financial_risk_ews_db vw_powerbi_bank_risk_wide' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database(pServer, pDatabase, [ReturnSingleDatabase=true]),
+				    financial_risk_ews_db_vw_powerbi_bank_risk_wide = Source{[Schema="financial_risk_ews_db",Item="vw_powerbi_bank_risk_wide"]}[Data]
+				in
+				    financial_risk_ews_db_vw_powerbi_bank_risk_wide
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

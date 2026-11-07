@@ -11,7 +11,18 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["pServer","pDatabase"]
+annotation PBI_QueryOrder = ["pServer","pDatabase","financial_risk_ews_db vw_powerbi_bank_risk_wide","financial_risk_ews_db vw_powerbi_executive_summary","financial_risk_ews_db vw_powerbi_loan_concentration","financial_risk_ews_db vw_powerbi_market_daily","financial_risk_ews_db dim_bank","financial_risk_ews_db dim_quarter"]
+
+ref table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
+ref table 'financial_risk_ews_db vw_powerbi_executive_summary'
+ref table 'financial_risk_ews_db vw_powerbi_loan_concentration'
+ref table 'financial_risk_ews_db vw_powerbi_market_daily'
+ref table DateTableTemplate_832229a5-753e-4652-8573-2976a77e5213
+ref table LocalDateTable_1758cd58-9f72-4e8a-bac1-4511678c676b
+ref table 'financial_risk_ews_db dim_bank'
+ref table 'financial_risk_ews_db dim_quarter'
+ref table LocalDateTable_2284f28b-64f3-4d3b-81d4-0db006947591
+ref table _Measures
 
 ref cultureInfo en-US
 

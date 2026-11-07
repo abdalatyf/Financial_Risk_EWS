@@ -1,0 +1,119 @@
+table 'financial_risk_ews_db vw_powerbi_loan_concentration'
+	lineageTag: 6210b79c-7ef1-4533-8808-31e65c10f095
+
+	column bank_id
+		dataType: string
+		lineageTag: ba22ded5-2453-440e-8d0e-2d57329d1ccd
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_name
+		dataType: string
+		lineageTag: 6a0bd82b-ff7f-4445-bfe7-cd8f09ba35a6
+		summarizeBy: none
+		sourceColumn: bank_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier
+		dataType: int64
+		formatString: 0
+		lineageTag: e20fd5bf-abbe-4e48-9f47-28686d3301fa
+		summarizeBy: sum
+		sourceColumn: tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier_label
+		dataType: string
+		lineageTag: d7ed40aa-fdcf-41ed-b110-682a35227923
+		summarizeBy: none
+		sourceColumn: tier_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_id
+		dataType: string
+		lineageTag: c5376ee2-172e-48cd-bd3b-cae8d501130a
+		summarizeBy: none
+		sourceColumn: quarter_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 940915cc-92d2-4b9e-b443-32f61161f125
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d704cb2-8f6e-4d1d-bb87-818ff4c0c5c1
+		summarizeBy: sum
+		sourceColumn: quarter_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column sector_name
+		dataType: string
+		lineageTag: 6ec67b45-8d70-4738-ad2b-e4be3cdbbddb
+		summarizeBy: none
+		sourceColumn: sector_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_amount
+		dataType: double
+		lineageTag: 6bac9853-9c52-4b65-a18c-e93111dd4875
+		summarizeBy: sum
+		sourceColumn: loan_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loan_hhi
+		dataType: double
+		lineageTag: b80b0c62-14fb-4c3a-a0cc-a8fc15b325ae
+		summarizeBy: sum
+		sourceColumn: loan_hhi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cre_share
+		dataType: double
+		lineageTag: 4d7f9a46-a493-4760-9ed8-4f30c0523029
+		summarizeBy: sum
+		sourceColumn: cre_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ci_share
+		dataType: double
+		lineageTag: 5c2fae53-fa1a-436a-a3c9-af80e6bca030
+		summarizeBy: sum
+		sourceColumn: ci_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'financial_risk_ews_db vw_powerbi_loan_concentration' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database(pServer, pDatabase, [ReturnSingleDatabase=true]),
+				    financial_risk_ews_db_vw_powerbi_loan_concentration = Source{[Schema="financial_risk_ews_db",Item="vw_powerbi_loan_concentration"]}[Data]
+				in
+				    financial_risk_ews_db_vw_powerbi_loan_concentration
+

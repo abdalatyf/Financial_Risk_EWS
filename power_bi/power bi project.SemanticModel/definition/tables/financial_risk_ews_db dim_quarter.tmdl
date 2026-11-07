@@ -1,0 +1,68 @@
+table 'financial_risk_ews_db dim_quarter'
+	lineageTag: cb38238f-d09b-48ab-a740-1821827b3636
+
+	column quarter_id
+		dataType: string
+		lineageTag: 714ddb6f-a31b-4767-8d83-f20da6fe7e57
+		summarizeBy: none
+		sourceColumn: quarter_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c528ef6-eb44-4391-95e8-b819a2468352
+		summarizeBy: sum
+		sourceColumn: year
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_num
+		dataType: int64
+		formatString: 0
+		lineageTag: ea007cbb-a401-4657-b146-1a496131c1c3
+		summarizeBy: sum
+		sourceColumn: quarter_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9ae990f8-ee02-4346-a1c8-00cc23c0c2f7
+		summarizeBy: none
+		sourceColumn: quarter_end_date
+
+		variation Variation
+			isDefault
+			relationship: 5fb5f84d-e626-4e94-9a17-b0c3088a3344
+			defaultHierarchy: LocalDateTable_2284f28b-64f3-4d3b-81d4-0db006947591.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column era
+		dataType: string
+		lineageTag: addff0f9-db8e-472b-8b4d-3f129c2a12cb
+		summarizeBy: none
+		sourceColumn: era
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'financial_risk_ews_db dim_quarter' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database(pServer, pDatabase, [ReturnSingleDatabase=true]),
+				    financial_risk_ews_db_dim_quarter = Source{[Schema="financial_risk_ews_db",Item="dim_quarter"]}[Data]
+				in
+				    financial_risk_ews_db_dim_quarter
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

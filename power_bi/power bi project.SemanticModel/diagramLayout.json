@@ -1,0 +1,112 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 70.199996948242188,
+        "y": 100
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_bank_risk_wide",
+          "nodeLineageTag": "97cafece-1d99-47e8-afdc-9f5936167a55",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 123,
+            "y": 302
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_executive_summary",
+          "nodeLineageTag": "fdb9f5cf-e4e4-441b-8792-605d6170bc48",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 603,
+            "y": 0
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_loan_concentration",
+          "nodeLineageTag": "6210b79c-7ef1-4533-8808-31e65c10f095",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 670,
+            "y": 297
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_market_daily",
+          "nodeLineageTag": "2d3f4404-1273-439e-9c30-77b300c69a1f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 307,
+            "y": 0
+          },
+          "nodeIndex": "financial_risk_ews_db dim_bank",
+          "nodeLineageTag": "81e3f648-78d5-403e-a1c7-5e6a1023e329",
+          "size": {
+            "height": 284,
+            "width": 338
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 963.19999694824219,
+            "y": 126
+          },
+          "nodeIndex": "financial_risk_ews_db dim_quarter",
+          "nodeLineageTag": "cb38238f-d09b-48ab-a740-1821827b3636",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1247.1999969482422,
+            "y": 201
+          },
+          "nodeIndex": "_Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -1,0 +1,34 @@
+table _Measures
+	lineageTag: bd8c5188-9209-4a9c-af6a-8e3a0fe0f76d
+
+	measure Supervisory_Alert_Badge =
+			
+			VAR Score = SELECTEDVALUE('financial_risk_ews_db vw_powerbi_executive_summary'[ews_score])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(Score), "NO FILING",
+			        Score >= 80,    "🔴 CRITICAL SURVEILLANCE",
+			        Score >= 60,    "🟡 ELEVATED CONCERN",
+			        "🟢 NORMAL CAPITAL"
+			    )
+		lineageTag: ed6be5c8-9bb6-41a8-ae91-0c92d7b1874a
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: ee006597-2b9c-431b-92bc-07953812c4e1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 549e43ab519148908cfece71c72865ed
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

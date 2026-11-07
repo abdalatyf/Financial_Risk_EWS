@@ -1,0 +1,132 @@
+table 'financial_risk_ews_db vw_powerbi_market_daily'
+	lineageTag: 2d3f4404-1273-439e-9c30-77b300c69a1f
+
+	column bank_id
+		dataType: string
+		lineageTag: 8b9e753f-7f43-47bb-89b7-e6689a469d44
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_name
+		dataType: string
+		lineageTag: e20ab4e3-a4b5-4c92-a088-d5633c57f19b
+		summarizeBy: none
+		sourceColumn: bank_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticker
+		dataType: string
+		lineageTag: 5df44168-6526-4a54-a80e-b91786e0e794
+		summarizeBy: none
+		sourceColumn: ticker
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier
+		dataType: int64
+		formatString: 0
+		lineageTag: 42632816-23f0-4dda-84b3-6ccf0f729e31
+		summarizeBy: sum
+		sourceColumn: tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column tier_label
+		dataType: string
+		lineageTag: a90afca6-c8de-421f-9ca8-764f22b21ae1
+		summarizeBy: none
+		sourceColumn: tier_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: df58f18d-a5c3-4b25-a1c2-a6c7ed28b86b
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 323c277e-28f3-4f2f-9415-3f62ce135782
+			defaultHierarchy: LocalDateTable_1758cd58-9f72-4e8a-bac1-4511678c676b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column open_price
+		dataType: double
+		lineageTag: aaae24e4-f665-453a-9d49-424910ca4454
+		summarizeBy: sum
+		sourceColumn: open_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column high_price
+		dataType: double
+		lineageTag: 2364e752-b92d-4adb-9e61-fa744eab792c
+		summarizeBy: sum
+		sourceColumn: high_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column low_price
+		dataType: double
+		lineageTag: 6fce3684-c132-44ae-892c-ced3637df237
+		summarizeBy: sum
+		sourceColumn: low_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column close_price
+		dataType: double
+		lineageTag: 3ac95db6-f7d2-478d-909b-1fdff9c9f16f
+		summarizeBy: sum
+		sourceColumn: close_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column volume
+		dataType: int64
+		formatString: 0
+		lineageTag: e95f1610-e588-4c5c-b3ba-9a308f426adc
+		summarizeBy: sum
+		sourceColumn: volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column fed_funds_rate
+		dataType: double
+		lineageTag: b7cf9263-547f-4c5b-922a-dc051cd6a1da
+		summarizeBy: sum
+		sourceColumn: fed_funds_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'financial_risk_ews_db vw_powerbi_market_daily' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database(pServer, pDatabase, [ReturnSingleDatabase=true]),
+				    financial_risk_ews_db_vw_powerbi_market_daily = Source{[Schema="financial_risk_ews_db",Item="vw_powerbi_market_daily"]}[Data]
+				in
+				    financial_risk_ews_db_vw_powerbi_market_daily
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
