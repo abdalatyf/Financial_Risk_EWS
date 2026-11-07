@@ -3,7 +3,8 @@
 **Project:** Financial Risk Early Warning System (DEPI Round 5 — Capstone)  
 **Lead UI/UX Designer:** Mohamed Lotfy Makram  
 **Target Platform:** Microsoft Power BI Desktop (`1920 × 1080 px`, 16:9 Widescreen)  
-**Design File:** [📂 `design/EWS_UI-UX.pptx`](../../design/EWS_UI-UX.pptx)  
+**Design Blueprint (Wireframes):** [📂 `design/EWS_UI-UX.pptx`](../../design/EWS_UI-UX.pptx)  
+**Visual Reference (Filled Data Charts):** [📂 `design/EWS Reference.pptx`](../../design/EWS%20Reference.pptx)  
 
 ---
 

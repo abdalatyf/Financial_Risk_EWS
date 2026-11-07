@@ -20,3 +20,8 @@ data/raw/ffiec_extracted/
 **/localSettings.json
 **/editorSettings.json
 *.pbix.temp
+
+# Office temporary lock files
+~$*.pptx
+~$*.docx
+~$*.xlsx
