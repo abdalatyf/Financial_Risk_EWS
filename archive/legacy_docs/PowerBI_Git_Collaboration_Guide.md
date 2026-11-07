@@ -11,14 +11,14 @@
 
 To prevent merge conflicts in Power BI `.pbip` files, each developer owns a dedicated feature branch and independent report page range:
 
-| Developer | Team Role | Assigned Scope | Dedicated Feature Branch |
+| Developer | Team Role | Assigned Scope | Dedicated Personal Branch |
 | :--- | :--- | :--- | :--- |
 | **Abdalatyf Ahmed Ibrahim** | Team Leader & QA Auditor | Integration, Code Review, Final Merge | `main` |
-| **Hazem Taha Hosny** | Financial & Quantitative Lead | Shared DAX Measures (`_Measures.tmdl`) | `feature/powerbi-dax-measures` |
-| **Mohamed Kamel Farouk** | Power BI Developer 1 | **Pages 1–3:** Executive Heatmap, Funding/Run Risk, Securities Shock | `feature/powerbi-core-pages` |
-| **Omar Mohamed Abdulwahab** | Power BI Developer 2 | **Pages 4–6:** Capital Adequacy, Profitability, CRE Concentration | `feature/powerbi-analytics` |
-| **Ibrahim Mosleh Ibrahim** | Power BI Developer 3 | **Pages 7–9:** Market Signals, Backtest Model, Single-Bank Deep Dive | `feature/powerbi-drilldown` |
-| **Mohamed Lotfy Makram** | Lead UI/UX Designer | Storyboard & Figma Visual Assets (`EWS_UI-UX.pptx`) | `feature/figma-uiux` |
+| **Hazem Taha Hosny** | Financial & Quantitative Lead | Shared DAX Measures (`_Measures.tmdl`) & Risk Calculations | `feature/hazem` |
+| **Mohamed Kamel Farouk** | Power BI Developer 1 | **Pages 1–3:** Executive Heatmap, Funding/Run Risk, Securities Shock | `feature/mohamed-kamel` |
+| **Omar Mohamed Abdulwahab** | Power BI Developer 2 | **Pages 4–6:** Capital Adequacy, Profitability, CRE Concentration | `feature/omar-abdulwahab` |
+| **Ibrahim Mosleh Ibrahim** | Power BI Developer 3 | **Pages 7–9:** Market Signals, Backtest Model, Single-Bank Deep Dive | `feature/ibrahim-mosleh` |
+| **Mohamed Lotfy Makram** | Lead UI/UX Designer | Storyboard & Figma Visual Assets (`EWS_UI-UX.pptx`) | `feature/mohamed-lotfy` |
 
 ---
 
@@ -59,9 +59,12 @@ To prevent merge conflicts in Power BI `.pbip` files, each developer owns a dedi
 git checkout main
 git pull origin main
 
-# 3. Switch to your feature branch (or create it if first time)
-git checkout -b feature/powerbi-core-pages    # Example for Mohamed Kamel
-# (For subsequent sessions, just use: git checkout feature/powerbi-core-pages)
+# 3. Switch to your personal branch (or create tracking if first time)
+git checkout feature/mohamed-kamel    # Example for Mohamed Kamel
+# (For Hazem: git checkout feature/hazem)
+# (For Omar: git checkout feature/omar-abdulwahab)
+# (For Ibrahim: git checkout feature/ibrahim-mosleh)
+# (For Lotfy: git checkout feature/mohamed-lotfy)
 
 # 4. Bring any new measures or updates from main into your branch
 git merge main
@@ -86,7 +89,7 @@ git add "power_bi/power bi project.SemanticModel/"
 git commit -m "feat(pbi-page-2): implement Funding & Run Risk scatter map and KPI cards"
 
 # 4. Push your branch to GitHub
-git push -u origin feature/powerbi-core-pages
+git push origin feature/mohamed-kamel
 ```
 
 ### Step 4: Submitting for Review (Pull Request)
@@ -103,7 +106,7 @@ When a developer submits a PR:
 ```bash
 # 1. Fetch and checkout the developer's branch locally
 git fetch origin
-git checkout feature/powerbi-core-pages
+git checkout feature/mohamed-kamel
 
 # 2. Open power_bi/power bi project.pbip in Power BI Desktop to visually verify:
 #    - Slicers work cleanly
