@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "1dd302263d0101ba0087",
+  "position": {
+    "x": 61.111111111111107,
+    "y": 1033.3333333333333,
+    "z": 5008,
+    "height": 31.481481481481481,
+    "width": 1551.8518518518517,
+    "tabOrder": 5008
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Illustrative data. DEPI capstone. Not investment advice. Retrospective study; no 2023 events in metrics.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "14pt",
+                      "color": "#9fb6cc"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
