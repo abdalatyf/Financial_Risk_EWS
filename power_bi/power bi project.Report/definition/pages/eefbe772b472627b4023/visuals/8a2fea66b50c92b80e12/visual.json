@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "8a2fea66b50c92b80e12",
   "position": {
     "x": 61.111111111111107,
@@ -66,11 +66,11 @@
                       "Property": "ews_score"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_executive_summary.ews_score)",
-              "nativeQueryRef": "Sum of ews_score"
+              "nativeQueryRef": "Average of ews_score"
             }
           ]
         }
@@ -102,7 +102,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
+                      "ColorId": 1,
                       "Percent": 0
                     }
                   }
@@ -114,7 +114,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
+                      "ColorId": 1,
                       "Percent": 0
                     }
                   }
@@ -136,7 +136,7 @@
                             "And": {
                               "Left": {
                                 "Comparison": {
-                                  "ComparisonKind": 2,
+                                  "ComparisonKind": 1,
                                   "Left": {
                                     "Aggregation": {
                                       "Expression": {
@@ -154,7 +154,7 @@
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "75D"
+                                      "Value": "80D"
                                     }
                                   }
                                 }
@@ -197,7 +197,7 @@
                             "And": {
                               "Left": {
                                 "Comparison": {
-                                  "ComparisonKind": 2,
+                                  "ComparisonKind": 1,
                                   "Left": {
                                     "Aggregation": {
                                       "Expression": {
@@ -215,7 +215,7 @@
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "50D"
+                                      "Value": "60D"
                                     }
                                   }
                                 }
@@ -240,7 +240,7 @@
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "74D"
+                                      "Value": "80D"
                                     }
                                   }
                                 }
@@ -250,67 +250,6 @@
                           "Value": {
                             "Literal": {
                               "Value": "'#FFA600'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "And": {
-                              "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 2,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
-                                            }
-                                          },
-                                          "Property": "ews_score"
-                                        }
-                                      },
-                                      "Function": 1
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "25D"
-                                    }
-                                  }
-                                }
-                              },
-                              "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 4,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
-                                            }
-                                          },
-                                          "Property": "ews_score"
-                                        }
-                                      },
-                                      "Function": 1
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "49D"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FFFB00'"
                             }
                           }
                         },
@@ -337,148 +276,7 @@
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "0D"
-                                    }
-                                  }
-                                }
-                              },
-                              "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 3,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
-                                            }
-                                          },
-                                          "Property": "ews_score"
-                                        }
-                                      },
-                                      "Function": 1
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "25D"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#238823'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "And": {
-                              "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 2,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
-                                            }
-                                          },
-                                          "Property": "ews_score"
-                                        }
-                                      },
-                                      "Function": 0
-                                    }
-                                  },
-                                  "Right": {
-                                    "RangePercent": {
-                                      "Min": {
-                                        "ScopedEval": {
-                                          "Expression": {
-                                            "Aggregation": {
-                                              "Expression": {
-                                                "ScopedEval": {
-                                                  "Expression": {
-                                                    "Aggregation": {
-                                                      "Expression": {
-                                                        "Column": {
-                                                          "Expression": {
-                                                            "SourceRef": {
-                                                              "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
-                                                            }
-                                                          },
-                                                          "Property": "ews_score"
-                                                        }
-                                                      },
-                                                      "Function": 0
-                                                    }
-                                                  },
-                                                  "Scope": [
-                                                    {
-                                                      "AllRolesRef": {}
-                                                    }
-                                                  ]
-                                                }
-                                              },
-                                              "Function": 3
-                                            }
-                                          },
-                                          "Scope": []
-                                        }
-                                      },
-                                      "Max": {
-                                        "ScopedEval": {
-                                          "Expression": {
-                                            "Aggregation": {
-                                              "Expression": {
-                                                "ScopedEval": {
-                                                  "Expression": {
-                                                    "Aggregation": {
-                                                      "Expression": {
-                                                        "Column": {
-                                                          "Expression": {
-                                                            "SourceRef": {
-                                                              "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
-                                                            }
-                                                          },
-                                                          "Property": "ews_score"
-                                                        }
-                                                      },
-                                                      "Function": 0
-                                                    }
-                                                  },
-                                                  "Scope": [
-                                                    {
-                                                      "AllRolesRef": {}
-                                                    }
-                                                  ]
-                                                }
-                                              },
-                                              "Function": 4
-                                            }
-                                          },
-                                          "Scope": []
-                                        }
-                                      },
-                                      "Percent": 0.25
+                                      "Value": "45D"
                                     }
                                   }
                                 }
@@ -498,12 +296,12 @@
                                           "Property": "ews_score"
                                         }
                                       },
-                                      "Function": 0
+                                      "Function": 1
                                     }
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "49D"
+                                      "Value": "60D"
                                     }
                                   }
                                 }
@@ -512,7 +310,39 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#000000'"
+                              "Value": "'#FFFB00'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 4,
+                              "Left": {
+                                "Aggregation": {
+                                  "Expression": {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
+                                        }
+                                      },
+                                      "Property": "ews_score"
+                                    }
+                                  },
+                                  "Function": 1
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "45D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#238823'"
                             }
                           }
                         }
@@ -608,6 +438,24 @@
           },
           "selector": {
             "id": "Row"
+          }
+        },
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ],
@@ -707,25 +555,6 @@
           }
         },
         "type": "Categorical"
-      },
-      {
-        "name": "d457534786c5d1e00c7d",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "financial_risk_ews_db vw_powerbi_executive_summary"
-                  }
-                },
-                "Property": "ews_score"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }
