@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "3e32527a63ac480be050",
+  "position": {
+    "x": 61.111111111111107,
+    "y": 1003.7037037037036,
+    "z": 5007,
+    "height": 29.629629629629626,
+    "width": 1798.148148148148,
+    "tabOrder": 5007
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Macro eras: 2008–09 Financial crisis · 2010–15 Zero-rate recovery · 2016–18 Gradual hikes · 2019 Easing · 2020–21 COVID zero rates · 2022 Sharp hikes (Confirmed: 60Q panel in dim_quarter)",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "14pt",
+                      "color": "#9fb6cc"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

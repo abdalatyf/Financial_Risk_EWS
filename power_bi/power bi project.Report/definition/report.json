@@ -50,6 +50,17 @@
           "type": "BaseTheme"
         }
       ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Screenshot_2026-11-11_2204418915407082762492.png",
+          "path": "Screenshot_2026-11-11_2204418915407082762492.png",
+          "type": "Image"
+        }
+      ]
     }
   ],
   "settings": {
