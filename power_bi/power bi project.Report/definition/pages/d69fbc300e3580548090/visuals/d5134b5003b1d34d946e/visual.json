@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
-  "name": "6ad08220702cd860d384",
+  "name": "d5134b5003b1d34d946e",
   "position": {
-    "x": 1461.1111111111111,
-    "y": 81.481481481481481,
-    "z": 5003,
-    "height": 46.296296296296291,
-    "width": 388.88888888888886,
-    "tabOrder": 5003
+    "x": 36.53846153846154,
+    "y": 257.69230769230768,
+    "z": 14000,
+    "height": 155.76923076923077,
+    "width": 248.07692307692307,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,20 +19,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "SCREEN 01 / 09 · HISTORICAL SNAPSHOT Q4 2022",
+                    "value": "FILTERS",
                     "textStyle": {
                       "fontFamily": "Calibri",
-                      "fontSize": "14pt",
+                      "fontSize": "20pt",
                       "color": "#9fb6cc"
                     }
-                  }
-                ],
-                "horizontalTextAlignment": "right"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": ""
                   }
                 ]
               }

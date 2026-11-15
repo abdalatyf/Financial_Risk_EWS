@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
-  "name": "3e32527a63ac480be050",
+  "name": "3d37216f822bc2c4bd89",
   "position": {
-    "x": 61.111111111111107,
-    "y": 1003.7037037037036,
-    "z": 5007,
-    "height": 29.629629629629626,
-    "width": 1798.148148148148,
-    "tabOrder": 5007
+    "x": 378.84615384615381,
+    "y": 42.307692307692307,
+    "z": 5000,
+    "height": 26.923076923076923,
+    "width": 713.46153846153845,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Macro eras: 2008–09 Financial crisis · 2010–15 Zero-rate recovery · 2016–18 Gradual hikes · 2019 Easing · 2020–21 COVID zero rates · 2022 Sharp hikes (Confirmed: 60Q panel in dim_quarter)",
+                    "value": "FINANCIAL INTELLIGENCE / EARLY WARNING SYSTEM",
                     "textStyle": {
                       "fontFamily": "Calibri",
-                      "fontSize": "14pt",
-                      "color": "#9fb6cc"
+                      "fontSize": "16pt",
+                      "color": "#22d3ee"
                     }
                   }
                 ]

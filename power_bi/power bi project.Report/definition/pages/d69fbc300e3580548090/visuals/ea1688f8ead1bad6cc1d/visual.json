@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ea1688f8ead1bad6cc1d",
+  "position": {
+    "x": 36.53846153846154,
+    "y": 863.46153846153845,
+    "z": 19000,
+    "height": 42.307692307692307,
+    "width": 228.84615384615384,
+    "tabOrder": 19000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "RISK LEVELS",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "18pt",
+                      "color": "#9fb6cc"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

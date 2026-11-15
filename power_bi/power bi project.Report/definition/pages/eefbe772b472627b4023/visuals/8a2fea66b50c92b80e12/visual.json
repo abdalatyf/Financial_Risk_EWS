@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "8a2fea66b50c92b80e12",
   "position": {
     "x": 61.111111111111107,
@@ -525,37 +525,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "111d222c908523c8136e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "financial_risk_ews_db dim_bank"
-              }
-            },
-            "Property": "bank_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "0fe5cf61092beaac5dd6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "financial_risk_ews_db dim_quarter"
-              }
-            },
-            "Property": "quarter_id"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }
