@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "933a2403a06e2c830d0e",
+  "position": {
+    "x": 39.812540908495876,
+    "y": 637.000654535934,
+    "z": 5000,
+    "height": 28.95457520617882,
+    "width": 162.86948553475585,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "BANK GROUPS",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "18pt",
+                      "color": "#9fb6cc"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

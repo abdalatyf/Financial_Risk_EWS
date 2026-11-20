@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "11cfda3be870522048dc",
+  "position": {
+    "x": 381.83846053148318,
+    "y": 971.78793035737658,
+    "z": 19000,
+    "height": 57.90915041235764,
+    "width": 1453.1577431600995,
+    "tabOrder": 19000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Message: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Calibri",
+                      "fontSize": "18pt",
+                      "color": "#22d3ee"
+                    }
+                  },
+                  {
+                    "value": "The composite signal moves earlier than the traditional C1 + P1 baseline.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "18pt",
+                      "color": "#d6e2ee"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

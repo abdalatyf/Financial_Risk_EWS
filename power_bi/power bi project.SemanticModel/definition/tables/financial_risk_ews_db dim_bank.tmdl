@@ -1,6 +1,14 @@
 table 'financial_risk_ews_db dim_bank'
 	lineageTag: 81e3f648-78d5-403e-a1c7-5e6a1023e329
 
+	measure Selected_Bank_KPI_Title =
+			
+			VAR SelectedBank = SELECTEDVALUE('financial_risk_ews_db dim_bank'[ticker], "All Banks")
+			VAR SelectedQuarter = SELECTEDVALUE('financial_risk_ews_db dim_quarter'[quarter_id], "Q4 2022")
+			RETURN
+			SelectedBank & " " & SelectedQuarter & " KPIs"
+		lineageTag: 87601556-cd63-4a41-b117-de7830ee73f6
+
 	column idrssd
 		dataType: int64
 		formatString: 0

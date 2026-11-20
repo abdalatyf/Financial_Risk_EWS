@@ -118,13 +118,12 @@ table 'financial_risk_ews_db vw_powerbi_executive_summary'
 
 	column uninsured_deposit_ratio
 		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 849cdfad-1e42-40ea-a891-76c71c9287e3
 		summarizeBy: sum
 		sourceColumn: uninsured_deposit_ratio
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column borrowings_to_assets
 		dataType: double

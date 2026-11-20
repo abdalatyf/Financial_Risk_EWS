@@ -14,6 +14,17 @@ table _Measures
 			    )
 		lineageTag: ed6be5c8-9bb6-41a8-ae91-0c92d7b1874a
 
+	measure 'Traditional Baseline (C1 + P1)' =
+			
+			(
+			    AVERAGE('financial_risk_ews_db vw_powerbi_bank_risk_wide'[C1_CET1_Ratio]) +
+			    AVERAGE('financial_risk_ews_db vw_powerbi_bank_risk_wide'[P1_ROA_Annualized])
+			) * 100
+		lineageTag: c218da02-d619-4d70-a53c-95707088ebf6
+		dataCategory: Uncategorized
+
+		formatStringDefinition = "0.00"
+
 	column Column
 		isHidden
 		formatString: 0

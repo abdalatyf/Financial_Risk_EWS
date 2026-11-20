@@ -150,13 +150,12 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column L1a_Domestic_Uninsured_Share
 		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 093d6fd3-f275-452b-8c93-e69aa253fcd7
 		summarizeBy: sum
 		sourceColumn: L1a_Domestic_Uninsured_Share
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column L1b_Foreign_Deposit_Share
 		dataType: double
@@ -170,23 +169,21 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column L2_Liquid_Assets_to_Assets
 		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: e783a48f-3873-45d2-83b3-16dd7181ec00
 		summarizeBy: sum
 		sourceColumn: L2_Liquid_Assets_to_Assets
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column L3_Liquidity_Fragility_Ratio
 		dataType: double
+		formatString: #,0.0
 		lineageTag: ffb67a33-ab84-49b9-8525-42d037b20741
 		summarizeBy: sum
 		sourceColumn: L3_Liquidity_Fragility_Ratio
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column L4_Deposit_Growth_YoY
 		dataType: double
@@ -220,13 +217,12 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column F1_Borrowings_to_Assets
 		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 8a196d23-df82-41e5-8620-bc6a5b460c41
 		summarizeBy: sum
 		sourceColumn: F1_Borrowings_to_Assets
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column F1a_ST_Borrowings_to_Assets
 		dataType: double
