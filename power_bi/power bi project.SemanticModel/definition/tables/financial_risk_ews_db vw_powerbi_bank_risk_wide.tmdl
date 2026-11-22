@@ -300,13 +300,12 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column K2_CI_Share
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 0ac3fd6d-cd93-4ee2-96a8-aa57d8171557
 		summarizeBy: sum
 		sourceColumn: K2_CI_Share
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column K3_CRE_Share
 		dataType: double
@@ -330,13 +329,12 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column P1_ROA_Annualized
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 4c94c54a-b38a-4e57-ba77-4438a7c0915f
 		summarizeBy: sum
 		sourceColumn: P1_ROA_Annualized
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column P2_ROE_Annualized
 		dataType: double

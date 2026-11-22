@@ -36,3 +36,45 @@ relationship AutoDetected_39fab3b5-7934-47ab-b9d7-3c27c1bb1e80
 	fromColumn: 'financial_risk_ews_db vw_powerbi_loan_concentration'.quarter_id
 	toColumn: 'financial_risk_ews_db dim_quarter'.quarter_id
 
+relationship e9dd73c0-22c8-4621-af82-333f539ed062
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'financial_risk_ews_db vw_powerbi_market_daily (2)'.date
+	toColumn: LocalDateTable_f59a4ff9-1f86-4879-9409-64c02583c412.Date
+
+relationship 3ead45a8-5e8f-4dae-947f-7d31689de9ee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'financial_risk_ews_db dim_quarter (2)'.quarter_end_date
+	toColumn: LocalDateTable_944904db-db66-47ee-ab73-eef49b10fe38.Date
+
+relationship AutoDetected_67e70efc-e639-4da7-ab7b-3ae4fb12743c
+	fromColumn: 'financial_risk_ews_db vw_powerbi_bank_risk_wide (2)'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank (2)'.bank_id
+
+relationship AutoDetected_7d3da013-bc90-4a44-a7d2-0c4d4acc387c
+	fromColumn: 'financial_risk_ews_db vw_powerbi_executive_summary (2)'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank (2)'.bank_id
+
+relationship AutoDetected_e1df6b8e-3eab-4bad-9e30-fad5c62e344d
+	fromColumn: 'financial_risk_ews_db vw_powerbi_loan_concentration (2)'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank (2)'.bank_id
+
+relationship AutoDetected_08697751-d47f-4e0c-95d2-813373ffe073
+	fromColumn: 'financial_risk_ews_db vw_powerbi_market_daily (2)'.bank_id
+	toColumn: 'financial_risk_ews_db dim_bank (2)'.bank_id
+
+relationship AutoDetected_5988c2de-0fe2-4db9-8e5b-bc6f71144b61
+	fromColumn: 'financial_risk_ews_db vw_powerbi_bank_risk_wide (2)'.quarter_id
+	toColumn: 'financial_risk_ews_db dim_quarter (2)'.quarter_id
+
+relationship AutoDetected_cedda493-feee-43da-a9b5-7fb407af50cf
+	fromColumn: 'financial_risk_ews_db vw_powerbi_executive_summary (2)'.quarter_id
+	toColumn: 'financial_risk_ews_db dim_quarter (2)'.quarter_id
+
+relationship AutoDetected_fd92c384-4e38-4972-b448-fbc1addf8c28
+	fromColumn: 'financial_risk_ews_db vw_powerbi_loan_concentration (2)'.quarter_id
+	toColumn: 'financial_risk_ews_db dim_quarter (2)'.quarter_id
+
+relationship AutoDetected_6092d5ef-c581-4568-8042-ae7a46f3c66e
+	fromColumn: 'financial_risk_ews_db vw_powerbi_loan_concentration (2)'.sector_name
+	toColumn: 'financial_risk_ews_db dim_loan_sector'.sector_name
+

@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 70.4000015258789,
-        "y": 44.799999237060547
+        "x": 70,
+        "y": 45
       },
       "nodes": [
         {
           "location": {
             "x": 0,
-            "y": 0
+            "y": 344.14632386245603
           },
           "nodeIndex": "financial_risk_ews_db vw_powerbi_bank_risk_wide",
           "nodeLineageTag": "97cafece-1d99-47e8-afdc-9f5936167a55",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 123,
-            "y": 302
+            "y": 646.146323862456
           },
           "nodeIndex": "financial_risk_ews_db vw_powerbi_executive_summary",
           "nodeLineageTag": "fdb9f5cf-e4e4-441b-8792-605d6170bc48",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 603,
-            "y": 0
+            "y": 344.14632386245603
           },
           "nodeIndex": "financial_risk_ews_db vw_powerbi_loan_concentration",
           "nodeLineageTag": "6210b79c-7ef1-4533-8808-31e65c10f095",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 670,
-            "y": 297
+            "y": 641.146323862456
           },
           "nodeIndex": "financial_risk_ews_db vw_powerbi_market_daily",
           "nodeLineageTag": "2d3f4404-1273-439e-9c30-77b300c69a1f",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 307,
-            "y": 0
+            "y": 344.14632386245603
           },
           "nodeIndex": "financial_risk_ews_db dim_bank",
           "nodeLineageTag": "81e3f648-78d5-403e-a1c7-5e6a1023e329",
@@ -76,7 +76,7 @@
         {
           "location": {
             "x": 963.19999694824219,
-            "y": 126
+            "y": 470.14632386245603
           },
           "nodeIndex": "financial_risk_ews_db dim_quarter",
           "nodeLineageTag": "cb38238f-d09b-48ab-a740-1821827b3636",
@@ -89,11 +89,102 @@
         {
           "location": {
             "x": 1247.1999969482422,
-            "y": 201
+            "y": 545.146323862456
           },
           "nodeIndex": "_Measures",
           "size": {
             "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1867.9479423984606,
+            "y": 181.93851129753239
+          },
+          "nodeIndex": "financial_risk_ews_db dim_bank (2)",
+          "nodeLineageTag": "911ab863-8e55-4a34-9a6b-28af9b0ced42",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2153.1349027241959,
+            "y": 399.81411049642281
+          },
+          "nodeIndex": "financial_risk_ews_db dim_loan_sector",
+          "nodeLineageTag": "21ee26a1-6e32-4cfe-b164-9d923d633d88",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1605.0034954785506,
+            "y": 684.07171074628354
+          },
+          "nodeIndex": "financial_risk_ews_db dim_quarter (2)",
+          "nodeLineageTag": "566b9cbd-2ad4-41bc-b2e2-69c0ce9431fd",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1581.1999969482422,
+            "y": 126.82819228525432
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_bank_risk_wide (2)",
+          "nodeLineageTag": "49b75adb-d36a-4854-9ec5-1a921dd9d7b6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1973.624455643273,
+            "y": 583.10344420265733
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_executive_summary (2)",
+          "nodeLineageTag": "9d2de101-f082-4f99-a7d4-8aca03c18529",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1773.1628892836163,
+            "y": 940.29264772491206
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_loan_concentration (2)",
+          "nodeLineageTag": "01cace1c-b1a3-45c9-835d-840ec3a8db1c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2152.1582975422493,
+            "y": -50
+          },
+          "nodeIndex": "financial_risk_ews_db vw_powerbi_market_daily (2)",
+          "nodeLineageTag": "ff414ba1-1652-4fb5-8378-3228bf85d931",
+          "size": {
+            "height": 300,
             "width": 234
           },
           "zIndex": 0

@@ -56,6 +56,21 @@
       "type": "RegisteredResources",
       "items": [
         {
+          "name": "EWS_UI-UX66547815524246219.png",
+          "path": "EWS_UI-UX66547815524246219.png",
+          "type": "Image"
+        },
+        {
+          "name": "EWS_UI-UX79363829587471824.png",
+          "path": "EWS_UI-UX79363829587471824.png",
+          "type": "Image"
+        },
+        {
+          "name": "EWS_UI-UX8394650713397342.png",
+          "path": "EWS_UI-UX8394650713397342.png",
+          "type": "Image"
+        },
+        {
           "name": "Screenshot_2026-11-11_2204418915407082762492.png",
           "path": "Screenshot_2026-11-11_2204418915407082762492.png",
           "type": "Image"

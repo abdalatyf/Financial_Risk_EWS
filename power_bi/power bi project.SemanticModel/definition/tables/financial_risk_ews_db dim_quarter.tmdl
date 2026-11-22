@@ -16,8 +16,6 @@ table 'financial_risk_ews_db dim_quarter'
 		summarizeBy: sum
 		sourceColumn: year
 
-		changedProperty = DataType
-
 		annotation SummarizationSetBy = Automatic
 
 	column quarter_num

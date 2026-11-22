@@ -1,0 +1,29 @@
+table 'financial_risk_ews_db dim_loan_sector'
+	lineageTag: 21ee26a1-6e32-4cfe-b164-9d923d633d88
+
+	column sector_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 41411c3e-107a-49e1-8127-80325968a72f
+		summarizeBy: none
+		sourceColumn: sector_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sector_name
+		dataType: string
+		lineageTag: f8357202-fd17-433d-844f-0d8adfb8b676
+		summarizeBy: none
+		sourceColumn: sector_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'financial_risk_ews_db dim_loan_sector' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("localhost", "Financial_Risk_EWS_db", [ReturnSingleDatabase=true]),
+				    financial_risk_ews_db_dim_loan_sector = Source{[Schema="financial_risk_ews_db",Item="dim_loan_sector"]}[Data]
+				in
+				    financial_risk_ews_db_dim_loan_sector
+
