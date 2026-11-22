@@ -56,11 +56,6 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Screenshot_2026-11-11_2204418915407082762492.png",
-          "path": "Screenshot_2026-11-11_2204418915407082762492.png",
-          "type": "Image"
-        },
-        {
           "name": "Screenshot_2026-11-14_1810019573108886062505.png",
           "path": "Screenshot_2026-11-14_1810019573108886062505.png",
           "type": "Image"
@@ -68,6 +63,11 @@
         {
           "name": "Screenshot_2026-11-21_00334417036205930258508.png",
           "path": "Screenshot_2026-11-21_00334417036205930258508.png",
+          "type": "Image"
+        },
+        {
+          "name": "Screenshot_2026-11-22_2153033093777238651674.png",
+          "path": "Screenshot_2026-11-22_2153033093777238651674.png",
           "type": "Image"
         }
       ]

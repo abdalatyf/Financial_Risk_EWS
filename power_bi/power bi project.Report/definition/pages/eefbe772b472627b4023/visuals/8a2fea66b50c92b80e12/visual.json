@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "8a2fea66b50c92b80e12",
   "position": {
-    "x": 61.111111111111107,
-    "y": 355.55555555555554,
+    "x": 347.45490247414585,
+    "y": 351.07422437491817,
     "z": 4000,
-    "height": 590.74074074074065,
-    "width": 1788.8888888888887,
+    "height": 600.80743552821048,
+    "width": 1525.5441811755466,
     "tabOrder": 4000
   },
   "visual": {
@@ -74,6 +74,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "financial_risk_ews_db dim_bank"
+                  }
+                },
+                "Property": "bank_name"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
