@@ -1,19 +1,19 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "7ed965482979d0939671",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "f9f05a20c857bcf67519",
   "position": {
-    "x": 256.69565217391306,
+    "x": 255.13043478260872,
     "y": 145.56521739130437,
-    "z": 2001,
-    "height": 78.260869565217391,
-    "width": 317.73913043478262,
-    "tabOrder": 2001
+    "z": 5001,
+    "height": 76.695652173913047,
+    "width": 306.78260869565219,
+    "tabOrder": 5001
   },
   "visual": {
-    "visualType": "kpi",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Indicator": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -28,46 +28,86 @@
                       "Property": "M1_Stock_Drawdown"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.M1_Stock_Drawdown)",
-              "nativeQueryRef": "Sum of M1_Stock_Drawdown"
+              "nativeQueryRef": "Average of M1_Stock_Drawdown"
             }
           ]
         }
       }
     },
+    "objects": {
+      "fillCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "value": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "label": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
-      "background": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "title": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'M1_Stock_Drawndown'"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {

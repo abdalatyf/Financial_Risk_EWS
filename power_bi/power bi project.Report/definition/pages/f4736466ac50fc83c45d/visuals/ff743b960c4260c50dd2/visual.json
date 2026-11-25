@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "ff743b960c4260c50dd2",
   "position": {
-    "x": 895.304347826087,
-    "y": 273.91304347826087,
+    "x": 901.56521739130437,
+    "y": 281.73913043478262,
     "z": 2000,
     "height": 341.21739130434787,
     "width": 339.6521739130435,
@@ -58,11 +58,11 @@
                       "Property": "M3_Fed_Rate_Change_YoY"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.M3_Fed_Rate_Change_YoY)",
-              "nativeQueryRef": "Sum of M3_Fed_Rate_Change_YoY"
+              "nativeQueryRef": "Average of M3_Fed_Rate_Change_YoY"
             }
           ]
         },
@@ -70,47 +70,22 @@
           "projections": [
             {
               "field": {
-                "Arithmetic": {
-                  "Left": {
-                    "Aggregation": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
                       "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "financial_risk_ews_db vw_powerbi_bank_risk_wide"
-                            }
-                          },
-                          "Property": "M1_Stock_Drawdown"
+                        "SourceRef": {
+                          "Entity": "financial_risk_ews_db vw_powerbi_bank_risk_wide"
                         }
                       },
-                      "Function": 0
+                      "Property": "M1_Stock_Drawdown"
                     }
                   },
-                  "Right": {
-                    "ScopedEval": {
-                      "Expression": {
-                        "Aggregation": {
-                          "Expression": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "financial_risk_ews_db vw_powerbi_bank_risk_wide"
-                                }
-                              },
-                              "Property": "M1_Stock_Drawdown"
-                            }
-                          },
-                          "Function": 0
-                        }
-                      },
-                      "Scope": []
-                    }
-                  },
-                  "Operator": 3
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.M1_Stock_Drawdown)",
-              "nativeQueryRef": "%GT Sum of M1_Stock_Drawdown"
+              "nativeQueryRef": "Average of M1_Stock_Drawdown"
             }
           ]
         }

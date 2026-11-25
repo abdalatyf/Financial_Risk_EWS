@@ -1,19 +1,19 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "148b9da02c87a67f23c0",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "3a35f84096db928855ac",
   "position": {
-    "x": 752.86956521739137,
+    "x": 754.43478260869574,
     "y": 147.13043478260872,
-    "z": 5001,
+    "z": 7002,
     "height": 76.695652173913047,
-    "width": 234.78260869565219,
-    "tabOrder": 5001
+    "width": 219.13043478260872,
+    "tabOrder": 7002
   },
   "visual": {
-    "visualType": "kpi",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Indicator": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -28,18 +28,31 @@
                       "Property": "P3_NII_Growth_YoY"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P3_NII_Growth_YoY)",
-              "nativeQueryRef": "Sum of P3_NII_Growth_YoY"
+              "nativeQueryRef": "Average of P3_NII_Growth_YoY"
             }
           ]
         }
       }
     },
-    "visualContainerObjects": {
-      "title": [
+    "objects": {
+      "fillCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "value": [
         {
           "properties": {
             "fontColor": {
@@ -54,10 +67,13 @@
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ],
-      "background": [
+      "label": [
         {
           "properties": {
             "show": {
@@ -67,16 +83,40 @@
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
-      ],
-      "border": [
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'P3_NII_Growth_YoY'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

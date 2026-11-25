@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "753794c8e119f4f523f7",
   "position": {
-    "x": 832.69565217391312,
+    "x": 821.73913043478262,
     "y": 278.60869565217394,
-    "z": 2000,
+    "z": 1000,
     "height": 333.39130434782612,
-    "width": 447.6521739130435,
-    "tabOrder": 2000
+    "width": 435.13043478260875,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -47,11 +47,11 @@
                       "Property": "K3_CRE_Share"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.K3_CRE_Share)",
-              "nativeQueryRef": "Sum of K3_CRE_Share"
+              "nativeQueryRef": "Average of K3_CRE_Share"
             }
           ]
         }
@@ -71,7 +71,7 @@
                     "Property": "K3_CRE_Share"
                   }
                 },
-                "Function": 0
+                "Function": 1
               }
             },
             "direction": "Descending"
@@ -121,17 +121,17 @@
                 }
               }
             },
-            "end": {
-              "expr": {
-                "Literal": {
-                  "Value": "60D"
-                }
-              }
-            },
             "gridlineShow": {
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }

@@ -1,19 +1,19 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "f11897614725985ae717",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "4da358bccf490e8acd4d",
   "position": {
-    "x": 1001.7391304347827,
+    "x": 504.00000000000006,
     "y": 147.13043478260872,
-    "z": 5002,
+    "z": 7001,
     "height": 76.695652173913047,
-    "width": 234.78260869565219,
-    "tabOrder": 5002
+    "width": 220.69565217391306,
+    "tabOrder": 7001
   },
   "visual": {
-    "visualType": "kpi",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Goal": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -25,24 +25,34 @@
                           "Entity": "financial_risk_ews_db vw_powerbi_bank_risk_wide"
                         }
                       },
-                      "Property": "P4_NII_to_Assets"
+                      "Property": "P2_ROE_Annualized"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
-              "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P4_NII_to_Assets)",
-              "nativeQueryRef": "Sum of P4_NII_to_Assets"
+              "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P2_ROE_Annualized)",
+              "nativeQueryRef": "Average of P2_ROE_Annualized"
             }
           ]
-        },
-        "Indicator": {
-          "projections": []
         }
       }
     },
     "objects": {
-      "indicator": [
+      "fillCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "value": [
         {
           "properties": {
             "fontColor": {
@@ -56,14 +66,26 @@
                   }
                 }
               }
-            },
-            "showIcon": {
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "label": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]
@@ -79,6 +101,13 @@
                 }
               }
             },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'P2_ROE_Annualized'"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -88,32 +117,6 @@
                       "Percent": 0
                     }
                   }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "background": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
                 }
               }
             }

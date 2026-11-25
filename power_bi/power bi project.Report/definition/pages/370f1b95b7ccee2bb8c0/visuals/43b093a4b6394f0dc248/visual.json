@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "43b093a4b6394f0dc248",
   "position": {
     "x": 737.21739130434787,
@@ -47,47 +47,22 @@
           "projections": [
             {
               "field": {
-                "Arithmetic": {
-                  "Left": {
-                    "Aggregation": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
                       "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "financial_risk_ews_db vw_powerbi_bank_risk_wide"
-                            }
-                          },
-                          "Property": "P4_NII_to_Assets"
+                        "SourceRef": {
+                          "Entity": "financial_risk_ews_db vw_powerbi_bank_risk_wide"
                         }
                       },
-                      "Function": 0
+                      "Property": "P4_NII_to_Assets"
                     }
                   },
-                  "Right": {
-                    "ScopedEval": {
-                      "Expression": {
-                        "Aggregation": {
-                          "Expression": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "financial_risk_ews_db vw_powerbi_bank_risk_wide"
-                                }
-                              },
-                              "Property": "P4_NII_to_Assets"
-                            }
-                          },
-                          "Function": 0
-                        }
-                      },
-                      "Scope": []
-                    }
-                  },
-                  "Operator": 3
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P4_NII_to_Assets)",
-              "nativeQueryRef": "%GT Sum of P4_NII_to_Assets"
+              "nativeQueryRef": "Average of P4_NII_to_Assets"
             }
           ]
         }
@@ -131,6 +106,20 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0625D"
                 }
               }
             }

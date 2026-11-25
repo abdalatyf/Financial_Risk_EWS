@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "0955dc645955c0d2059f",
   "position": {
     "x": 574.43478260869574,
@@ -58,11 +58,11 @@
                       "Property": "M2_Stock_Volatility_60d"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.M2_Stock_Volatility_60d)",
-              "nativeQueryRef": "Sum of M2_Stock_Volatility_60d"
+              "nativeQueryRef": "Average of M2_Stock_Volatility_60d"
             }
           ]
         }

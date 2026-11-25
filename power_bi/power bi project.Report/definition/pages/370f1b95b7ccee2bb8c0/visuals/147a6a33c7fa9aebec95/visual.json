@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "147a6a33c7fa9aebec95",
   "position": {
     "x": 236.34782608695653,
-    "y": 252.00000000000003,
+    "y": 277.04347826086956,
     "z": 1000,
-    "height": 367.82608695652175,
+    "height": 342.78260869565219,
     "width": 500.86956521739137,
     "tabOrder": 1000
   },
@@ -58,11 +58,11 @@
                       "Property": "P1_ROA_Annualized"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P1_ROA_Annualized)",
-              "nativeQueryRef": "Sum of P1_ROA_Annualized"
+              "nativeQueryRef": "Average of P1_ROA_Annualized"
             },
             {
               "field": {
@@ -77,11 +77,11 @@
                       "Property": "P2_ROE_Annualized"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P2_ROE_Annualized)",
-              "nativeQueryRef": "Sum of P2_ROE_Annualized"
+              "nativeQueryRef": "Average of P2_ROE_Annualized"
             }
           ]
         }
@@ -125,13 +125,6 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
-                }
-              }
-            },
-            "end": {
-              "expr": {
-                "Literal": {
-                  "Value": "7.55D"
                 }
               }
             },

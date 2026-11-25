@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "b5838dfa747056386c23",
   "position": {
     "x": 737.21739130434787,
@@ -58,11 +58,11 @@
                       "Property": "P3_NII_Growth_YoY"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P3_NII_Growth_YoY)",
-              "nativeQueryRef": "Sum of P3_NII_Growth_YoY"
+              "nativeQueryRef": "Average of P3_NII_Growth_YoY"
             }
           ]
         }

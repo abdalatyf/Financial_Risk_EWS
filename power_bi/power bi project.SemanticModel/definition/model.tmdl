@@ -11,7 +11,7 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["pServer","pDatabase","financial_risk_ews_db vw_powerbi_bank_risk_wide","financial_risk_ews_db vw_powerbi_executive_summary","financial_risk_ews_db vw_powerbi_loan_concentration","financial_risk_ews_db vw_powerbi_market_daily","financial_risk_ews_db dim_bank","financial_risk_ews_db dim_quarter","financial_risk_ews_db vw_powerbi_bank_risk_wide (2)","financial_risk_ews_db vw_powerbi_executive_summary (2)","financial_risk_ews_db vw_powerbi_loan_concentration (2)","financial_risk_ews_db vw_powerbi_market_daily (2)","financial_risk_ews_db dim_bank (2)","financial_risk_ews_db dim_loan_sector","financial_risk_ews_db dim_quarter (2)"]
+annotation PBI_QueryOrder = ["pServer","pDatabase","financial_risk_ews_db vw_powerbi_bank_risk_wide","financial_risk_ews_db vw_powerbi_executive_summary","financial_risk_ews_db vw_powerbi_loan_concentration","financial_risk_ews_db vw_powerbi_market_daily","financial_risk_ews_db dim_bank","financial_risk_ews_db dim_quarter","financial_risk_ews_db dim_loan_sector"]
 
 ref table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 ref table 'financial_risk_ews_db vw_powerbi_executive_summary'
@@ -23,15 +23,7 @@ ref table 'financial_risk_ews_db dim_bank'
 ref table 'financial_risk_ews_db dim_quarter'
 ref table LocalDateTable_2284f28b-64f3-4d3b-81d4-0db006947591
 ref table _Measures
-ref table 'financial_risk_ews_db vw_powerbi_bank_risk_wide (2)'
-ref table 'financial_risk_ews_db vw_powerbi_executive_summary (2)'
-ref table 'financial_risk_ews_db vw_powerbi_loan_concentration (2)'
-ref table 'financial_risk_ews_db vw_powerbi_market_daily (2)'
-ref table LocalDateTable_f59a4ff9-1f86-4879-9409-64c02583c412
-ref table 'financial_risk_ews_db dim_bank (2)'
 ref table 'financial_risk_ews_db dim_loan_sector'
-ref table 'financial_risk_ews_db dim_quarter (2)'
-ref table LocalDateTable_944904db-db66-47ee-ab73-eef49b10fe38
 
 ref cultureInfo en-US
 

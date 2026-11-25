@@ -309,23 +309,21 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column K3_CRE_Share
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: e122d670-1b62-4a10-a9d7-5800d9bfec64
 		summarizeBy: sum
 		sourceColumn: K3_CRE_Share
 
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation SummarizationSetBy = User
 
 	column K4_Loan_HHI
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 58d5d918-5a74-4d4d-843b-b698be37b87a
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: K4_Loan_HHI
 
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation SummarizationSetBy = User
 
 	column P1_ROA_Annualized
 		dataType: double
@@ -338,63 +336,57 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column P2_ROE_Annualized
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 3219bb40-477b-4ba7-80c1-0af9d1d16358
 		summarizeBy: sum
 		sourceColumn: P2_ROE_Annualized
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column P3_NII_Growth_YoY
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 119fe0a0-e4ad-4735-ae56-549573e97be0
 		summarizeBy: sum
 		sourceColumn: P3_NII_Growth_YoY
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column P4_NII_to_Assets
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: b09f521d-bf64-408e-b23e-a191866d8c25
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: P4_NII_to_Assets
 
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation SummarizationSetBy = User
 
 	column M1_Stock_Drawdown
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 2105dd0b-aa55-4acf-ac6e-b1ff18d2b47a
 		summarizeBy: sum
 		sourceColumn: M1_Stock_Drawdown
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column M2_Stock_Volatility_60d
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 726c17f4-c965-4ff0-b1fd-df2b11f2c220
 		summarizeBy: sum
 		sourceColumn: M2_Stock_Volatility_60d
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column M3_Fed_Rate_Change_YoY
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: e097ccc1-967a-4df4-99aa-498f230baf87
 		summarizeBy: sum
 		sourceColumn: M3_Fed_Rate_Change_YoY
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column EWS_Composite_Score
 		dataType: double

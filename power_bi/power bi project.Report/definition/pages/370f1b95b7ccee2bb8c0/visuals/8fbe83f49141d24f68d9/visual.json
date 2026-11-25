@@ -1,19 +1,19 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "32fec1e3f5915ff3e224",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "8fbe83f49141d24f68d9",
   "position": {
     "x": 253.56521739130437,
     "y": 147.13043478260872,
-    "z": 4000,
+    "z": 7000,
     "height": 76.695652173913047,
-    "width": 233.21739130434784,
-    "tabOrder": 4000
+    "width": 222.2608695652174,
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "kpi",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Indicator": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -28,18 +28,31 @@
                       "Property": "P1_ROA_Annualized"
                     }
                   },
-                  "Function": 0
+                  "Function": 1
                 }
               },
               "queryRef": "Sum(financial_risk_ews_db vw_powerbi_bank_risk_wide.P1_ROA_Annualized)",
-              "nativeQueryRef": "Sum of P1_ROA_Annualized"
+              "nativeQueryRef": "Average of P1_ROA_Annualized"
             }
           ]
         }
       }
     },
-    "visualContainerObjects": {
-      "title": [
+    "objects": {
+      "fillCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "value": [
         {
           "properties": {
             "fontColor": {
@@ -54,10 +67,13 @@
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ],
-      "background": [
+      "label": [
         {
           "properties": {
             "show": {
@@ -67,16 +83,40 @@
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
-      ],
-      "border": [
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'P1_ROA_Annualized'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }
