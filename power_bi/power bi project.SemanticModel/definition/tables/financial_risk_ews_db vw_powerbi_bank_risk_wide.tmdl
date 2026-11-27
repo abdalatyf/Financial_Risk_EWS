@@ -70,33 +70,30 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column C1_CET1_Ratio
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 8fd13c98-d611-4861-95f0-db8988da9a39
 		summarizeBy: sum
 		sourceColumn: C1_CET1_Ratio
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column C2_Tier1_Ratio
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: f73b8e75-9ba2-4a44-acb6-59f37ecd8e2c
 		summarizeBy: sum
 		sourceColumn: C2_Tier1_Ratio
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column C3_Equity_to_Assets
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: e7f44a81-e673-4d61-b0e2-9ac2c3ec9605
 		summarizeBy: sum
 		sourceColumn: C3_Equity_to_Assets
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column C4_HTM_Loss_to_Equity
 		dataType: double
@@ -130,13 +127,12 @@ table 'financial_risk_ews_db vw_powerbi_bank_risk_wide'
 
 	column C7_Sec_Loss_to_RWA
 		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 6aa85b1e-5650-47e3-8e7f-c0e28e266fb5
 		summarizeBy: sum
 		sourceColumn: C7_Sec_Loss_to_RWA
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column L1_Consolidated_Uninsured_Share
 		dataType: double

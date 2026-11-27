@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cca5515a598f4a788608",
+  "position": {
+    "x": 365.55151197800757,
+    "y": 179.15643408823144,
+    "z": 2000,
+    "height": 34.383558057337346,
+    "width": 980.83623510930749,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Reported capital ratios vs. Capital under HTM-loss scenario (C6, analytical scenario, not an official ratio)",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "16pt",
+                      "color": "#9fb6cc"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

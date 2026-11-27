@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "abc0adce16147c815330",
+  "position": {
+    "x": 365.55151197800757,
+    "y": 973.59759130776285,
+    "z": 3000,
+    "height": 106.76999607278439,
+    "width": 1007.9811493651001,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Message: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Calibri",
+                      "fontSize": "16pt",
+                      "color": "#22d3ee"
+                    }
+                  },
+                  {
+                    "value": "Reported capital looks compliant; under the HTM-loss scenario the cushion shrinks sharply.",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "16pt",
+                      "color": "#d6e2ee"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "6f7314a9a153ba6691df",
+  "position": {
+    "x": 365.55151197800757,
+    "y": 32.573897106951172,
+    "z": 0,
+    "height": 38.0028799581097,
+    "width": 852.350307631889,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "FINANCIAL INTELLIGENCE / EARLY WARNING SYSTEM",
+                    "textStyle": {
+                      "fontFamily": "Calibri",
+                      "fontSize": "16pt",
+                      "color": "#22d3ee"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
